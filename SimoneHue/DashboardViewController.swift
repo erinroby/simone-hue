@@ -15,6 +15,7 @@ class DashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.enableHeartbeat()
     }
 
     override func didReceiveMemoryWarning() {
@@ -107,7 +108,7 @@ class DashboardViewController: UIViewController {
     
     func noLocalBridge() {
         print("noLocalBridge")
-        // TODO: Coding error. Be sure that code has handled phHueSdk.setBridgeToUseWithIpAddress(macAddress: String) has been called before begining pushlink process
+        // TODO: Coding error. Be sure that code has handled phHueSdk.setBridgeToUseWithIpAddress(macAddress: String) has been called before beginning pushlink process
     }
     
     func buttonNotPressed() {

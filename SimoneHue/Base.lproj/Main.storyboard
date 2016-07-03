@@ -130,7 +130,19 @@
                     <view key="view" contentMode="scaleToFill" id="vup-jL-gJI">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Push the Button!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXr-sb-Qqs">
+                                <rect key="frame" x="236" y="289.5" width="128" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oXr-sb-Qqs" firstAttribute="centerX" secondItem="vup-jL-gJI" secondAttribute="centerX" id="E5j-HK-wjT"/>
+                            <constraint firstItem="oXr-sb-Qqs" firstAttribute="centerY" secondItem="vup-jL-gJI" secondAttribute="centerY" id="Y6Q-x3-aeM"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qAK-vL-6wW" userLabel="First Responder" sceneMemberID="firstResponder"/>

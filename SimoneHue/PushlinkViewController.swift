@@ -37,6 +37,9 @@ class PushlinkViewController: UIViewController {
         
     }
     
+    func startPushLinking() {
+        print("startPushLinking")
+    }
 
     /*
     // MARK: - Navigation

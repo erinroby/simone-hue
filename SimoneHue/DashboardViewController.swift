@@ -98,6 +98,7 @@ class DashboardViewController: UIViewController {
     func authenticationSuccess() {
         print("authenticationSuccess")
         Light.shared.phHueSdk.enableLocalConnection()
+        // TODO: Dismiss the pushlinkViewController here...cause we're good to go!
         // TODO: enable a heartbeat to connect to this bridge.
     }
     
@@ -121,8 +122,14 @@ class DashboardViewController: UIViewController {
     func doAuthentication() {
         print("doAuthentication")
         self.disableHeartbeat()
-        let storyboard = UIStoryboard(name: "PushlinkViewController", bundle: nil)
-        let pushLinkViewController = storyboard.instantiateViewControllerWithIdentifier("PushlinkViewController") as! PushlinkViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let pushlinkViewController = storyboard.instantiateViewControllerWithIdentifier("PushlinkViewController") as! PushlinkViewController
+        navigationController?.presentViewController(
+            pushlinkViewController,
+            animated: true,
+            completion: {(bool) in
+                pushlinkViewController.startPushLinking()
+        })
         Light.shared.phHueSdk.startPushlinkAuthentication()
     }
 }

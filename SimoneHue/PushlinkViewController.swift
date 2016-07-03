@@ -37,6 +37,10 @@ class PushlinkViewController: UIViewController {
         
     }
     
+    func startPushLinking() {
+        Light.shared.phHueSdk.startPushlinkAuthentication()
+
+    }
 
     /*
     // MARK: - Navigation

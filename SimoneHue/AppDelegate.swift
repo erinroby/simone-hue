@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
     {
         navigationController = window!.rootViewController as? UINavigationController
-        Light.shared.enableHeartbeat()
         return true
     }
 }

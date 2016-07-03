@@ -130,7 +130,6 @@ class DashboardViewController: UIViewController {
             completion: {(bool) in
                 pushlinkViewController.startPushLinking()
         })
-        Light.shared.phHueSdk.startPushlinkAuthentication()
     }
 }
 

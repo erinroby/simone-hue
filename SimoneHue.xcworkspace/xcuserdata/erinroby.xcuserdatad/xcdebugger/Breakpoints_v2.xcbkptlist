@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SimoneHue/PushlinkViewController.swift"
-            timestampString = "489215289.873701"
+            filePath = "SimoneHue/ColorPickerViewController.swift"
+            timestampString = "489348535.816115"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SimoneHue/PushlinkViewController.swift"
-            timestampString = "489215609.861847"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "startPushLinking()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "valuePicked(_:type:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

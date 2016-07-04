@@ -21,12 +21,21 @@ class Light: NSObject {
     let bridgeSendAPI = PHBridgeSendAPI()
     let lightState = PHLightState()
     
+
+    
     let maxHue = 65535
     let maxDim = 254
     
     func startUp() {
         phHueSdk.enableLogging(true)
         phHueSdk.startUpSDK()
+    }
+    
+    enum State {
+        case On
+        case Bri
+        case Sat
+        case Hue
     }
     
     // TODO: refactor light state menthods from controller to here.

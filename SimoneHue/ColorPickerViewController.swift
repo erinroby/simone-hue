@@ -49,18 +49,21 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
             horizontalSaturationPicker.currentColor = color
             horizontalBrightnessPicker.currentColor = color
             horizontalAlphaPicker.currentColor = color
+
             
             break
         case SwiftHUEColorPicker.PickerType.Saturation:
             horizontalColorPicker.currentColor = color
             horizontalBrightnessPicker.currentColor = color
             horizontalAlphaPicker.currentColor = color
+
             
             break
         case SwiftHUEColorPicker.PickerType.Brightness:
             horizontalColorPicker.currentColor = color
             horizontalSaturationPicker.currentColor = color
             horizontalAlphaPicker.currentColor = color
+ 
             
             break
         case SwiftHUEColorPicker.PickerType.Alpha:
@@ -68,15 +71,29 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
             horizontalSaturationPicker.currentColor = color
             horizontalBrightnessPicker.currentColor = color
             break
+
         }
         
-        print(color)
+        let xyColor = PHUtilities.calculateXY(color, forModel: "LCT007")
+        self.getColor(xyColor.x, y: xyColor.y)
     }
     
     // TODO: Capture current color, send to light to test with button action. The color picker is using a UIColor to set background...how to capture and convert to what the HUE is up to....?
     
-    func getColor() {
-        
+    func getColor(x: CGFloat, y: CGFloat) {
+        for light in Light.shared.cache!.lights!.values {
+            
+            Light.shared.lightState.x = x
+            Light.shared.lightState.y = y
+            
+            Light.shared.bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: Light.shared.lightState) { (errors: [AnyObject]!) -> () in
+                if errors != nil {
+                    print(errors)
+                }
+                print(Light.shared.lightState)
+            }
+        }
+
     }
     
     

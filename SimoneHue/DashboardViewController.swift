@@ -154,12 +154,14 @@ class DashboardViewController: UIViewController {
             
             Light.shared.lightState.brightness = 100
             Light.shared.lightState.saturation = 175
+            Light.shared.lightState.hue = 25500
             Light.shared.lightState.on = true
             
             Light.shared.bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: Light.shared.lightState) { (errors: [AnyObject]!) -> () in
                 if errors != nil {
                     print(errors)
                 }
+                print(Light.shared.lightState)
             }
         }
     }

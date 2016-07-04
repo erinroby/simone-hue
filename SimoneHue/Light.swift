@@ -6,7 +6,7 @@
 //  Copyright © 2016 Erin Roby. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class Light: NSObject {
     static let shared = Light()
@@ -18,9 +18,21 @@ class Light: NSObject {
     
     let phHueSdk: PHHueSDK = PHHueSDK()
     let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
+    let bridgeSendAPI = PHBridgeSendAPI()
+    let lightState = PHLightState()
+    
+    let maxHue = 65535
+    let maxDim = 254
     
     func startUp() {
         phHueSdk.enableLogging(true)
         phHueSdk.startUpSDK()
     }
+    
+    // TODO: refactor light state menthods from controller to here.
+    func updateState() {
+        
+    }
+    
+    // TODO: write methods for scheduling here.
 }

@@ -23,6 +23,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4YZ-LI-eAL">
                                         <rect key="frame" x="285" y="335" width="30" height="30"/>
                                         <state key="normal" title="OFF"/>
+                                        <connections>
+                                            <action selector="offButtonSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tqo-Jg-0hm"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xtd-Ys-Ogk">
                                         <rect key="frame" x="274.5" y="428" width="51" height="30"/>
@@ -31,10 +34,16 @@
                                             <constraint firstAttribute="height" constant="30" id="dro-O5-B2W"/>
                                         </constraints>
                                         <state key="normal" title="COLOR"/>
+                                        <connections>
+                                            <segue destination="iqd-zj-UeG" kind="show" identifier="ColorPickerViewController" id="TXQ-Gq-tfn"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Snq-ID-uSC">
                                         <rect key="frame" x="285" y="285" width="30" height="30"/>
                                         <state key="normal" title="ON"/>
+                                        <connections>
+                                            <action selector="onButtonSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CpX-FI-sgg"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -86,7 +95,7 @@
         <!--Color Picker View Controller-->
         <scene sceneID="jMn-yJ-X23">
             <objects>
-                <viewController storyboardIdentifier="ColorPickerViewController" id="iqd-zj-UeG" customClass="ColorPickerViewController" customModule="SimoneHue" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="iqd-zj-UeG" customClass="ColorPickerViewController" customModule="SimoneHue" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LUc-FE-s7b"/>
                         <viewControllerLayoutGuide type="bottom" id="5ql-3J-kHG"/>
@@ -94,8 +103,77 @@
                     <view key="view" contentMode="scaleToFill" id="deq-t0-APV">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eIW-3t-dhE">
+                                <rect key="frame" x="225" y="108" width="150" height="150"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="bKW-cb-P5f"/>
+                                    <constraint firstAttribute="width" constant="150" id="ebU-xS-ppL"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pW8-rf-lCr" customClass="SwiftHUEColorPicker" customModule="SimoneHue" customModuleProvider="target">
+                                <rect key="frame" x="180" y="289" width="240" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Evb-ik-yHe"/>
+                                    <constraint firstAttribute="width" constant="240" id="ozk-S3-INu"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gcq-6f-Jl7" customClass="SwiftHUEColorPicker" customModule="SimoneHue" customModuleProvider="target">
+                                <rect key="frame" x="180" y="363" width="240" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="Ibk-cg-IKs"/>
+                                    <constraint firstAttribute="height" constant="50" id="zBr-iC-xAJ"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wm7-Eo-PfM" customClass="SwiftHUEColorPicker" customModule="SimoneHue" customModuleProvider="target">
+                                <rect key="frame" x="180" y="447" width="240" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="KDf-l0-9fY"/>
+                                    <constraint firstAttribute="width" constant="240" id="omA-Eh-nRK"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L22-W7-oCP" customClass="SwiftHUEColorPicker" customModule="SimoneHue" customModuleProvider="target">
+                                <rect key="frame" x="180" y="506" width="240" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="0kn-Ih-sEA"/>
+                                    <constraint firstAttribute="height" constant="50" id="HPN-Zo-lLM"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chu-Nz-Lea">
+                                <rect key="frame" x="0.0" y="562" width="600" height="30"/>
+                                <state key="normal" title="Play!"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pW8-rf-lCr" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="2jX-PD-bp0"/>
+                            <constraint firstItem="Wm7-Eo-PfM" firstAttribute="top" secondItem="Gcq-6f-Jl7" secondAttribute="bottom" constant="20" id="4YA-Zx-OPb"/>
+                            <constraint firstItem="L22-W7-oCP" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="8QG-zk-Ufj"/>
+                            <constraint firstItem="chu-Nz-Lea" firstAttribute="leading" secondItem="deq-t0-APV" secondAttribute="leading" id="L0I-Np-kbN"/>
+                            <constraint firstAttribute="trailing" secondItem="chu-Nz-Lea" secondAttribute="trailing" id="S99-n6-TUr"/>
+                            <constraint firstItem="pW8-rf-lCr" firstAttribute="top" secondItem="eIW-3t-dhE" secondAttribute="bottom" constant="25" id="Up5-T6-EhP"/>
+                            <constraint firstItem="eIW-3t-dhE" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="XL8-XX-OSu"/>
+                            <constraint firstItem="eIW-3t-dhE" firstAttribute="top" secondItem="LUc-FE-s7b" secondAttribute="bottom" constant="44" id="d0z-VD-kG9"/>
+                            <constraint firstItem="chu-Nz-Lea" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="exE-gM-aT9"/>
+                            <constraint firstItem="Wm7-Eo-PfM" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="jaX-Ny-83d"/>
+                            <constraint firstItem="Gcq-6f-Jl7" firstAttribute="top" secondItem="pW8-rf-lCr" secondAttribute="bottom" constant="20" id="nu7-FU-vLy"/>
+                            <constraint firstItem="Gcq-6f-Jl7" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="o0C-UW-o0U"/>
+                            <constraint firstItem="L22-W7-oCP" firstAttribute="top" secondItem="Wm7-Eo-PfM" secondAttribute="bottom" constant="20" id="ov4-Qt-Imh"/>
+                            <constraint firstItem="5ql-3J-kHG" firstAttribute="top" secondItem="chu-Nz-Lea" secondAttribute="bottom" constant="15" id="rHg-lO-BaC"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="colorView" destination="eIW-3t-dhE" id="6eL-wS-R2L"/>
+                        <outlet property="horizontalAlphaPicker" destination="L22-W7-oCP" id="bh7-UD-LEx"/>
+                        <outlet property="horizontalBrightnessPicker" destination="Wm7-Eo-PfM" id="B0X-Rr-FB0"/>
+                        <outlet property="horizontalColorPicker" destination="pW8-rf-lCr" id="UD7-8d-rYf"/>
+                        <outlet property="horizontalSaturationPicker" destination="Gcq-6f-Jl7" id="sfF-5o-emP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z83-tE-Jyg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

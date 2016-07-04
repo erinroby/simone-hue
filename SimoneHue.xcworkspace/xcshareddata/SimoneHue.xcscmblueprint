@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "BEC4AC9D390CA05B660C0BC8656023D0921EDB8F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "BEC4AC9D390CA05B660C0BC8656023D0921EDB8F" : 0,
+    "EB79EE5254103E98E9FA292F452FAD5F00FD61B2" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "0B904F5C-F15F-4B34-9826-A80A47AF5CA1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "BEC4AC9D390CA05B660C0BC8656023D0921EDB8F" : "SimoneHue\/",
+    "EB79EE5254103E98E9FA292F452FAD5F00FD61B2" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SimoneHue",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SimoneHue.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/erinroby\/simone-hue.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BEC4AC9D390CA05B660C0BC8656023D0921EDB8F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/erinroby\/iOS-401-class-5.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EB79EE5254103E98E9FA292F452FAD5F00FD61B2"
+    }
+  ]
+}

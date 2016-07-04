@@ -72,7 +72,7 @@ class DashboardViewController: UIViewController {
         notificationManager.registerObject(self, withSelector: #selector(self.notAuthenticated), forNotification: NO_LOCAL_AUTHENTICATION_NOTIFICATION)
     }
     
-    // MARK: Notification handler methods. if this subclass isn't inheriting from NSObject, I need @objc before each func declaration.
+    // MARK: Notification handler methods.
     
     func localConnection() {
         print("localConnection")

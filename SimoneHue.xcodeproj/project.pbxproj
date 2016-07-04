@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D5EBDAF1D270448006BA951 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5EBDAE1D270448006BA951 /* Light.swift */; };
+		0D9AA8221D2A06C500DA382F /* SwiftHUEColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9AA8211D2A06C500DA382F /* SwiftHUEColorPicker.swift */; };
 		0DBB774A1D27980E00DFEE13 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBB77411D27980E00DFEE13 /* DDAbstractDatabaseLogger.m */; };
 		0DBB774B1D27980E00DFEE13 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBB77431D27980E00DFEE13 /* DDASLLogger.m */; };
 		0DBB774C1D27980E00DFEE13 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBB77451D27980E00DFEE13 /* DDFileLogger.m */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		00C9705F1245BCD19AE4050B /* Pods-SimoneHue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimoneHue.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimoneHue/Pods-SimoneHue.debug.xcconfig"; sourceTree = "<group>"; };
 		0D5EBDAE1D270448006BA951 /* Light.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
+		0D9AA8211D2A06C500DA382F /* SwiftHUEColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftHUEColorPicker.swift; sourceTree = "<group>"; };
 		0DBB773B1D278DE600DFEE13 /* SimoneHue-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SimoneHue-Bridging-Header.h"; path = "SimoneHue/SimoneHue-Bridging-Header.h"; sourceTree = "<group>"; };
 		0DBB77401D27980E00DFEE13 /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
 		0DBB77411D27980E00DFEE13 /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
@@ -77,6 +79,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D9AA8251D2A083800DA382F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0D5EBDAE1D270448006BA951 /* Light.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		0DBB773F1D2797F500DFEE13 /* Lumberjack */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +119,7 @@
 		0DBB77561D27988E00DFEE13 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0D9AA8211D2A06C500DA382F /* SwiftHUEColorPicker.swift */,
 				DEB7C36E06460E85BBC03884 /* Pods_SimoneHue.framework */,
 				0DD3A01B1D26E3090012FB8B /* HueSDK_iOS.framework */,
 				0DBB773F1D2797F500DFEE13 /* Lumberjack */,
@@ -137,7 +148,7 @@
 		0DD39FE01D26D4D00012FB8B /* SimoneHue */ = {
 			isa = PBXGroup;
 			children = (
-				0D5EBDAE1D270448006BA951 /* Light.swift */,
+				0D9AA8251D2A083800DA382F /* Model */,
 				0DFA007B1D282B4D00BF4C2F /* Controller */,
 				0DFA007A1D282B3600BF4C2F /* View */,
 				0DD39FF41D26D5290012FB8B /* Supporting */,
@@ -313,6 +324,7 @@
 				0DFA00811D282EC200BF4C2F /* TimePickerViewController.swift in Sources */,
 				0D5EBDAF1D270448006BA951 /* Light.swift in Sources */,
 				0DBB774B1D27980E00DFEE13 /* DDASLLogger.m in Sources */,
+				0D9AA8221D2A06C500DA382F /* SwiftHUEColorPicker.swift in Sources */,
 				0DBB77541D27982E00DFEE13 /* ContextFilterLogFormatter.m in Sources */,
 				0DFA00831D282ED300BF4C2F /* ColorPickerViewController.swift in Sources */,
 				0DFA007D1D282E8300BF4C2F /* PushlinkViewController.swift in Sources */,

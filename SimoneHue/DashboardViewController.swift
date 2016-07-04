@@ -10,6 +10,12 @@ import UIKit
 
 class DashboardViewController: UIViewController {
     let notificationManager = PHNotificationManager.defaultManager()
+//    let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
+//    let bridgeSendAPI = PHBridgeSendAPI()
+//    let lightState = PHLightState()
+
+    let maxHue = 65535
+    let maxDim = 254
 
     @IBOutlet weak var dashboardView: UIView!
     
@@ -131,5 +137,37 @@ class DashboardViewController: UIViewController {
                 pushlinkViewController.startPushLinking()
         })
     }
+    @IBAction func offButtonSelected(sender: UIButton) {
+        
+        for light in Light.shared.cache!.lights!.values {
+
+            Light.shared.lightState.on = false
+
+            Light.shared.bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: Light.shared.lightState) { (errors: [AnyObject]!) -> () in
+                if errors != nil {
+                    print(errors)
+                }
+            }
+        }
+    }
+    
+    // MARK: Light State Methods
+    
+    @IBAction func onButtonSelected(sender: UIButton) {
+        
+        for light in Light.shared.cache!.lights!.values {
+            
+            Light.shared.lightState.brightness = 100
+            Light.shared.lightState.saturation = 175
+            Light.shared.lightState.on = true
+
+            Light.shared.bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: Light.shared.lightState) { (errors: [AnyObject]!) -> () in
+                if errors != nil {
+                print(errors)
+                }
+            }
+        }
+    }
+    
 }
 

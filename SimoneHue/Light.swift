@@ -18,6 +18,8 @@ class Light: NSObject {
     
     let phHueSdk: PHHueSDK = PHHueSDK()
     let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
+    let bridgeSendAPI = PHBridgeSendAPI()
+    let lightState = PHLightState()
     
     func startUp() {
         phHueSdk.enableLogging(true)

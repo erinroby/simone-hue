@@ -30,13 +30,16 @@ class PushlinkViewController: UIViewController {
     }
     
     func pushLinkSuccess() {
-        
+        // Start here to dismiss the view...
     }
     
     func pushLinkFailed(error: PHError) {
-        
+        // Start here to handle errors...
     }
     
+    func startPushLinking() {
+        Light.shared.phHueSdk.startPushlinkAuthentication()
+    }
 
     /*
     // MARK: - Navigation

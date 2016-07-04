@@ -18,6 +18,10 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupColorPicker()
+    }
+    
+    func setupColorPicker() {
         horizontalColorPicker.delegate = self
         horizontalColorPicker.direction = SwiftHUEColorPicker.PickerDirection.Horizontal
         horizontalSaturationPicker.type = SwiftHUEColorPicker.PickerType.Color
@@ -33,7 +37,6 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
         horizontalAlphaPicker.delegate = self
         horizontalAlphaPicker.direction = SwiftHUEColorPicker.PickerDirection.Horizontal
         horizontalAlphaPicker.type = SwiftHUEColorPicker.PickerType.Alpha
-        // Do any additional setup after loading the view.
     }
     
     // MARK: - SwiftHUEColorPickerDelegate
@@ -46,19 +49,19 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
             horizontalSaturationPicker.currentColor = color
             horizontalBrightnessPicker.currentColor = color
             horizontalAlphaPicker.currentColor = color
-
+            
             break
         case SwiftHUEColorPicker.PickerType.Saturation:
             horizontalColorPicker.currentColor = color
             horizontalBrightnessPicker.currentColor = color
             horizontalAlphaPicker.currentColor = color
-
+            
             break
         case SwiftHUEColorPicker.PickerType.Brightness:
             horizontalColorPicker.currentColor = color
             horizontalSaturationPicker.currentColor = color
             horizontalAlphaPicker.currentColor = color
-
+            
             break
         case SwiftHUEColorPicker.PickerType.Alpha:
             horizontalColorPicker.currentColor = color
@@ -66,5 +69,33 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
             horizontalBrightnessPicker.currentColor = color
             break
         }
+        
+        print(color)
     }
+    
+    // TODO: Capture current color, send to light to test with button action. The color picker is using a UIColor to set background...how to capture and convert to what the HUE is up to....?
+    
+    func getColor() {
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

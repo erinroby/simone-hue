@@ -20,34 +20,44 @@
                             <view contentMode="scaleToFill" restorationIdentifier="DashboardView" translatesAutoresizingMaskIntoConstraints="NO" id="HXv-8n-0VF" customClass="DashboardView" customModule="SimoneHue" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4YZ-LI-eAL">
-                                        <rect key="frame" x="285" y="335" width="30" height="30"/>
-                                        <state key="normal" title="OFF"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Snq-ID-uSC">
+                                        <rect key="frame" x="180" y="485" width="240" height="45"/>
+                                        <color key="backgroundColor" red="0.94082532051282053" green="0.94082532051282053" blue="0.94082532051282053" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="240" id="bwM-rU-YPy"/>
+                                            <constraint firstAttribute="height" constant="45" id="ygE-Nt-q3i"/>
+                                        </constraints>
+                                        <state key="normal" title="WAKE ON">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
-                                            <action selector="offButtonSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tqo-Jg-0hm"/>
+                                            <action selector="wakeButtonSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Rj-Y5-ADV"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xtd-Ys-Ogk">
-                                        <rect key="frame" x="274.5" y="428" width="51" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xtd-Ys-Ogk">
+                                        <rect key="frame" x="0.0" y="268" width="600" height="70"/>
+                                        <color key="backgroundColor" red="0.97734374999999996" green="0.97734374999999996" blue="0.97734374999999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="51" id="Fj7-hy-PVY"/>
-                                            <constraint firstAttribute="height" constant="30" id="dro-O5-B2W"/>
+                                            <constraint firstAttribute="height" constant="70" id="Om9-fT-Rwi"/>
                                         </constraints>
-                                        <state key="normal" title="COLOR"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="25" maxY="0.0"/>
+                                        <state key="normal" title="EDIT">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
                                             <segue destination="iqd-zj-UeG" kind="show" identifier="ColorPickerViewController" id="TXQ-Gq-tfn"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Snq-ID-uSC">
-                                        <rect key="frame" x="285" y="285" width="30" height="30"/>
-                                        <state key="normal" title="ON"/>
-                                        <connections>
-                                            <action selector="onButtonSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CpX-FI-sgg"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6w8-oe-RaV">
-                                        <rect key="frame" x="275" y="480" width="51" height="30"/>
-                                        <state key="normal" title="ALARM"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6w8-oe-RaV">
+                                        <rect key="frame" x="0.0" y="363" width="600" height="70"/>
+                                        <color key="backgroundColor" red="0.97734374999999996" green="0.97734374999999996" blue="0.97734374999999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="m4O-zc-5eF"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="25" maxY="0.0"/>
+                                        <state key="normal" title="EDIT">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
                                             <segue destination="okx-3z-2ct" kind="show" identifier="TimePickerViewController" id="Vq1-Qy-mGz"/>
                                         </connections>
@@ -55,14 +65,14 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="6w8-oe-RaV" firstAttribute="top" secondItem="xtd-Ys-Ogk" secondAttribute="bottom" constant="22" id="2MF-nU-rbp"/>
-                                    <constraint firstItem="xtd-Ys-Ogk" firstAttribute="centerX" secondItem="HXv-8n-0VF" secondAttribute="centerX" id="707-6X-tqw"/>
-                                    <constraint firstItem="Snq-ID-uSC" firstAttribute="leading" secondItem="4YZ-LI-eAL" secondAttribute="leading" id="8oF-Wh-PGv"/>
-                                    <constraint firstItem="6w8-oe-RaV" firstAttribute="centerX" secondItem="HXv-8n-0VF" secondAttribute="centerX" id="Bfz-Rm-Sm1"/>
-                                    <constraint firstItem="Snq-ID-uSC" firstAttribute="centerX" secondItem="HXv-8n-0VF" secondAttribute="centerX" id="DBw-6d-Pmu"/>
-                                    <constraint firstItem="xtd-Ys-Ogk" firstAttribute="top" secondItem="4YZ-LI-eAL" secondAttribute="bottom" constant="63" id="WSi-KI-3jx"/>
-                                    <constraint firstItem="Snq-ID-uSC" firstAttribute="centerY" secondItem="HXv-8n-0VF" secondAttribute="centerY" id="euX-YG-Fc9"/>
-                                    <constraint firstItem="4YZ-LI-eAL" firstAttribute="top" secondItem="Snq-ID-uSC" secondAttribute="bottom" constant="20" id="pg9-Zi-Pzm"/>
+                                    <constraint firstAttribute="trailing" secondItem="xtd-Ys-Ogk" secondAttribute="trailing" id="5d4-AS-cNs"/>
+                                    <constraint firstAttribute="bottom" secondItem="Snq-ID-uSC" secondAttribute="bottom" constant="70" id="Nfr-ws-QsQ"/>
+                                    <constraint firstItem="6w8-oe-RaV" firstAttribute="top" secondItem="xtd-Ys-Ogk" secondAttribute="bottom" constant="25" id="aWK-EY-Sbb"/>
+                                    <constraint firstItem="xtd-Ys-Ogk" firstAttribute="leading" secondItem="HXv-8n-0VF" secondAttribute="leading" id="iqh-Z6-i0j"/>
+                                    <constraint firstItem="6w8-oe-RaV" firstAttribute="leading" secondItem="HXv-8n-0VF" secondAttribute="leading" id="m9H-mB-6n4"/>
+                                    <constraint firstItem="Snq-ID-uSC" firstAttribute="top" secondItem="6w8-oe-RaV" secondAttribute="bottom" constant="52" id="mp1-lC-gyN"/>
+                                    <constraint firstAttribute="trailing" secondItem="6w8-oe-RaV" secondAttribute="trailing" id="oD0-8q-iFA"/>
+                                    <constraint firstItem="Snq-ID-uSC" firstAttribute="centerX" secondItem="HXv-8n-0VF" secondAttribute="centerX" id="yli-ey-Geh"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -101,13 +111,24 @@
                                     <!--2016-07-05 16:14:51 +0000-->
                                 </date>
                             </datePicker>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="twx-yK-NGh">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="c5Y-ss-Sw9"/>
+                                    <barButtonItem title="SAVE" id="ake-EU-MTu"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="zz3-bG-p3t"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="zUu-Gv-XnE" secondAttribute="trailing" id="1Mg-m5-CTo"/>
+                            <constraint firstAttribute="trailing" secondItem="twx-yK-NGh" secondAttribute="trailing" id="4HA-fb-g8I"/>
                             <constraint firstItem="zUu-Gv-XnE" firstAttribute="leading" secondItem="Wh2-yd-H8z" secondAttribute="leading" id="cmp-NT-vWy"/>
+                            <constraint firstItem="twx-yK-NGh" firstAttribute="leading" secondItem="Wh2-yd-H8z" secondAttribute="leading" id="oRk-9G-cZv"/>
                             <constraint firstItem="zUu-Gv-XnE" firstAttribute="top" secondItem="qJF-Bl-uMr" secondAttribute="bottom" constant="200" id="oxq-AL-h4g"/>
                             <constraint firstItem="zUu-Gv-XnE" firstAttribute="centerX" secondItem="Wh2-yd-H8z" secondAttribute="centerX" id="qrG-gL-64E"/>
+                            <constraint firstItem="X1I-cH-qYS" firstAttribute="top" secondItem="twx-yK-NGh" secondAttribute="bottom" id="qsP-dw-qyf"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -135,49 +156,59 @@
                                     <constraint firstAttribute="width" constant="150" id="ebU-xS-ppL"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pW8-rf-lCr" customClass="SwiftHUEColorPicker" customModule="SimoneHue" customModuleProvider="target">
-                                <rect key="frame" x="180" y="289" width="240" height="50"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pW8-rf-lCr" customClass="SwiftHUEColorPicker" customModule="SimoneHue" customModuleProvider="target">
+                                <rect key="frame" x="180" y="283" width="240" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Evb-ik-yHe"/>
                                     <constraint firstAttribute="width" constant="240" id="ozk-S3-INu"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gcq-6f-Jl7" customClass="SwiftHUEColorPicker" customModule="SimoneHue" customModuleProvider="target">
-                                <rect key="frame" x="180" y="363" width="240" height="50"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gcq-6f-Jl7" customClass="SwiftHUEColorPicker" customModule="SimoneHue" customModuleProvider="target">
+                                <rect key="frame" x="180" y="353" width="240" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="Ibk-cg-IKs"/>
                                     <constraint firstAttribute="height" constant="50" id="zBr-iC-xAJ"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wm7-Eo-PfM" customClass="SwiftHUEColorPicker" customModule="SimoneHue" customModuleProvider="target">
-                                <rect key="frame" x="180" y="447" width="240" height="50"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wm7-Eo-PfM" customClass="SwiftHUEColorPicker" customModule="SimoneHue" customModuleProvider="target">
+                                <rect key="frame" x="180" y="423" width="240" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="KDf-l0-9fY"/>
                                     <constraint firstAttribute="width" constant="240" id="omA-Eh-nRK"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chu-Nz-Lea">
-                                <rect key="frame" x="0.0" y="562" width="600" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chu-Nz-Lea">
+                                <rect key="frame" x="0.0" y="500" width="600" height="30"/>
                                 <state key="normal" title="Play!"/>
+                                <connections>
+                                    <action selector="playButtonPressed:" destination="iqd-zj-UeG" eventType="touchUpInside" id="b01-XO-Vmx"/>
+                                </connections>
                             </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="abp-S4-XRs">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="6iq-38-dae"/>
+                                    <barButtonItem title="SAVE" id="QzF-EF-ftp"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="daZ-AB-9lk"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="pW8-rf-lCr" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="2jX-PD-bp0"/>
                             <constraint firstItem="Wm7-Eo-PfM" firstAttribute="top" secondItem="Gcq-6f-Jl7" secondAttribute="bottom" constant="20" id="4YA-Zx-OPb"/>
-                            <constraint firstItem="chu-Nz-Lea" firstAttribute="leading" secondItem="deq-t0-APV" secondAttribute="leading" id="L0I-Np-kbN"/>
-                            <constraint firstAttribute="trailing" secondItem="chu-Nz-Lea" secondAttribute="trailing" id="S99-n6-TUr"/>
+                            <constraint firstAttribute="trailing" secondItem="abp-S4-XRs" secondAttribute="trailing" id="NLC-3X-iUW"/>
                             <constraint firstItem="pW8-rf-lCr" firstAttribute="top" secondItem="eIW-3t-dhE" secondAttribute="bottom" constant="25" id="Up5-T6-EhP"/>
                             <constraint firstItem="eIW-3t-dhE" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="XL8-XX-OSu"/>
                             <constraint firstItem="eIW-3t-dhE" firstAttribute="top" secondItem="LUc-FE-s7b" secondAttribute="bottom" constant="44" id="d0z-VD-kG9"/>
-                            <constraint firstItem="chu-Nz-Lea" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="exE-gM-aT9"/>
+                            <constraint firstItem="5ql-3J-kHG" firstAttribute="top" secondItem="abp-S4-XRs" secondAttribute="bottom" id="dhd-89-EAu"/>
                             <constraint firstItem="Wm7-Eo-PfM" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="jaX-Ny-83d"/>
                             <constraint firstItem="Gcq-6f-Jl7" firstAttribute="top" secondItem="pW8-rf-lCr" secondAttribute="bottom" constant="20" id="nu7-FU-vLy"/>
                             <constraint firstItem="Gcq-6f-Jl7" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="o0C-UW-o0U"/>
-                            <constraint firstItem="5ql-3J-kHG" firstAttribute="top" secondItem="chu-Nz-Lea" secondAttribute="bottom" constant="15" id="rHg-lO-BaC"/>
+                            <constraint firstItem="abp-S4-XRs" firstAttribute="leading" secondItem="deq-t0-APV" secondAttribute="leading" id="wwq-vV-Gfs"/>
                         </constraints>
                     </view>
                     <connections>

@@ -21,22 +21,22 @@ class TimePickerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setAlarm() {
-        for light in Light.shared.cache!.lights!.values {
-            
-            let newSchedule = PHSchedule()
-            print(newSchedule)
-            newSchedule.name = "test schedule"
-            newSchedule.localTime = true
-            
-            Light.shared.lightState.on = true
-            
-            Light.shared.bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: Light.shared.lightState) { (errors: [AnyObject]!) -> () in
-                if errors != nil {
-                    print(errors)
-                }
-                print(Light.shared.lightState)
-            }
-        }
-    }
+//    func setAlarm() {
+//        for light in Light.shared.cache!.lights!.values {
+//            
+//            let newSchedule = PHSchedule()
+//            print(newSchedule)
+//            newSchedule.name = "test schedule"
+//            newSchedule.localTime = true
+//            
+//            Light.shared.lightState.on = true
+//            
+//            Light.shared.bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: Light.shared.lightState) { (errors: [AnyObject]!) -> () in
+//                if errors != nil {
+//                    print(errors)
+//                }
+//                print(Light.shared.lightState)
+//            }
+//        }
+//    }
 }

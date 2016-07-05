@@ -19,57 +19,87 @@ class Light: NSObject {
     let phHueSdk: PHHueSDK = PHHueSDK()
     let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
     let bridgeSendAPI = PHBridgeSendAPI()
-    let lightState = PHLightState()
+    
+    let currentLightState = PHLightState()
+    let alarmLightState = PHLightState()
+    let testLightState = PHLightState()
+    
     let schedule = PHSchedule()
     
     func startUp() {
         phHueSdk.enableLogging(true)
         phHueSdk.startUpSDK()
         schedule.localTime = true
-        schedule.name = "Simone"
     }
     
-    enum State {
-        case On(Bool)
-        case Bri(Int)
-        case X(CGFloat)
-        case Y(CGFloat)
+    private func getColorValues(color: UIColor) -> (x: CGFloat, y: CGFloat, bri: Int) {
+        let xyColor = PHUtilities.calculateXY(color, forModel: "LCT007")
+        var hue = CGFloat()
+        var sat = CGFloat()
+        var bri = CGFloat()
+        var alpha = CGFloat()
+        
+        color.getHue(&hue, saturation: &sat, brightness: &bri, alpha: &alpha)
+        let brightnessValue = Int(max(0, min(100, Int(bri * 100))))
+        
+        return (xyColor.x, y: xyColor.y, brightnessValue)
     }
     
-    // Assumes one light.
+    func testColor(x: CGFloat, y: CGFloat, bri: Int) {
+        for light in Light.shared.cache!.lights!.values {
+            testLightState.x = x
+            testLightState.y = y
+            testLightState.brightness = bri
+            
+            self.setLightState(light.identifier, state: testLightState)
+        }
+    }
     
-    func setLightState() {
+    func setOnState() {
+        for light in Light.shared.cache!.lights!.values {
+            
+            if self.currentLightState.on != true {
+                self.currentLightState.on = true
+            } else {
+                self.currentLightState.on = false
+            }
+            
+            self.setLightState(light.identifier, state: currentLightState)
+        }
+    }
+    
+    func setLightState(light: String , state: PHLightState) {
+        Light.shared.bridgeSendAPI.updateLightStateForId(light, withLightState: state) { (errors: [AnyObject]!) -> () in
+            if errors != nil {
+                print(errors)
+            }
+        }
         
     }
     
-    func readLightState() {
-        
+    // I need this funciton to return a color in the current state so that I can reflect that state in my colorView on the dashboard.
+    func readColorState(state: PHLightState) -> UIColor {
+        let color = UIColor()
+        return color
     }
     
-    // Assumes one alarm recurring:
+    // Assumes one possible recurring alarm:
     
-    enum CalendarUnit {
-        case Hour
-        case Minute
-        case AM
-        case PM
-    }
-    
-    func setAlarm(hour: Int, minute: Int) {
-        let alarmLightState = PHLightState()
+    func setAlarm(hour: Int, minute: Int, am: Bool) {
         let components = NSDateComponents()
         
-        components.hour = 14
-        components.minute = 0
+        components.hour = hour
+        components.minute = minute
+        // add days of the week here.
         
         if let calendar = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierGregorian) {
             self.schedule.date = calendar.dateFromComponents(components)
         }
         
-        // The docs say set the alarmStateHere we want here???
         self.schedule.state = alarmLightState
+        self.schedule.identifier = "Simone"
         self.bridgeSendAPI.createSchedule(schedule) { (error) in
-            // handle the error!
+            // handle the errors!
         }
         
     }
@@ -77,7 +107,7 @@ class Light: NSObject {
     func updateAlarm() {
         
     }
-
+    
     func readAlarm() {
         
     }

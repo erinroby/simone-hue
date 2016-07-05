@@ -57,16 +57,14 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
             
         case SwiftHUEColorPicker.PickerType.Alpha:
             break
-
+            
         }
         
-//        let dim = horizontalBrightnessPicker How to get this value?
+        // convert UIColor
+        // TODO: move this to a play button.
         let xyColor = PHUtilities.calculateXY(color, forModel: "LCT007")
-        
-            self.getHSBA(color)
-//            print(color)
+        self.getHSBA(color)
         self.getColor(xyColor.x, y: xyColor.y)
-        // TODO: Right now only the color and saturation pickers matter. What about the overall brightness/DIM or "bri" in the docs? I'd like a third slider show this and ditch the alpha and brightness here.
     }
     
     func getColor(x: CGFloat, y: CGFloat) {
@@ -86,20 +84,20 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
     
     
     func getHSBA(color:UIColor) {
-        var hue:CGFloat = 0.0
-        var sat:CGFloat = 0.0
-        var bri:CGFloat = 0.0
-        var alpha:CGFloat = 0.0
+        var hue = CGFloat()
+        var sat = CGFloat()
+        var bri = CGFloat()
+        var alpha = CGFloat()
         
         color.getHue(&hue, saturation: &sat, brightness: &bri, alpha: &alpha)
-//        
-//        let hueValue = Int(max(0, min(360, Float(hue * 360))))
-//        let saturationValue = Int(max(0, min(100, Float(sat * 100))))
+
+        //        let hueValue = Int(max(0, min(360, Float(hue * 360))))
+        //        let saturationValue = Int(max(0, min(100, Float(sat * 100))))
         let brightnessValue = Int(max(0, min(100, Int(bri * 100))))
         
         for light in Light.shared.cache!.lights!.values {
-//            Light.shared.lightState.hue = hueValue
-//            Light.shared.lightState.saturation = saturationValue
+            //            Light.shared.lightState.hue = hueValue
+            //            Light.shared.lightState.saturation = saturationValue
             Light.shared.lightState.brightness = brightnessValue
             
             Light.shared.bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: Light.shared.lightState) { (errors: [AnyObject]!) -> () in
@@ -109,11 +107,14 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
                 // handle errors
             }
         }
-
+        
     }
+    
+    // TODO: I'd like to update the color sliders all in one function. Currently the saturation works, but the hue conversion is different for HUE than what is currently used in getHSBA()
     
     func updateColor(hue:CGFloat, saturation:CGFloat, brightness:CGFloat, alpha:CGFloat) {
         for light in Light.shared.cache!.lights!.values {
+            
             Light.shared.lightState.hue = hue
             Light.shared.lightState.saturation = saturation
             Light.shared.lightState.brightness = brightness
@@ -126,5 +127,4 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
             }
         }
     }
-    
 }

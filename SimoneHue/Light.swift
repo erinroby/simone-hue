@@ -20,28 +20,65 @@ class Light: NSObject {
     let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
     let bridgeSendAPI = PHBridgeSendAPI()
     let lightState = PHLightState()
-    
-
-    
-    let maxHue = 65535
-    let maxDim = 254
+    let schedule = PHSchedule()
     
     func startUp() {
         phHueSdk.enableLogging(true)
         phHueSdk.startUpSDK()
+        schedule.localTime = true
+        schedule.name = "Simone"
     }
     
     enum State {
-        case On
-        case Bri
-        case Sat
-        case Hue
+        case On(Bool)
+        case Bri(Int)
+        case X(CGFloat)
+        case Y(CGFloat)
     }
     
-    // TODO: refactor light state menthods from controller to here.
-    func updateState() {
+    // Assumes one light.
+    
+    func setLightState() {
         
     }
     
-    // TODO: write methods for scheduling here.
+    func readLightState() {
+        
+    }
+    
+    // Assumes one alarm recurring:
+    
+    enum CalendarUnit {
+        case Hour
+        case Minute
+        case AM
+        case PM
+    }
+    
+    func setAlarm(hour: Int, minute: Int) {
+        let alarmLightState = PHLightState()
+        let components = NSDateComponents()
+        
+        components.hour = 14
+        components.minute = 0
+        
+        if let calendar = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierGregorian) {
+            self.schedule.date = calendar.dateFromComponents(components)
+        }
+        
+        // The docs say set the alarmStateHere we want here???
+        self.schedule.state = alarmLightState
+        self.bridgeSendAPI.createSchedule(schedule) { (error) in
+            // handle the error!
+        }
+        
+    }
+    
+    func updateAlarm() {
+        
+    }
+
+    func readAlarm() {
+        
+    }
 }

@@ -14,7 +14,6 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
     @IBOutlet weak var horizontalColorPicker: SwiftHUEColorPicker!
     @IBOutlet weak var horizontalSaturationPicker: SwiftHUEColorPicker!
     @IBOutlet weak var horizontalBrightnessPicker: SwiftHUEColorPicker!
-    @IBOutlet weak var horizontalAlphaPicker: SwiftHUEColorPicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +32,6 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
         horizontalBrightnessPicker.delegate = self
         horizontalBrightnessPicker.direction = SwiftHUEColorPicker.PickerDirection.Horizontal
         horizontalBrightnessPicker.type = SwiftHUEColorPicker.PickerType.Brightness
-        
-        horizontalAlphaPicker.delegate = self
-        horizontalAlphaPicker.direction = SwiftHUEColorPicker.PickerDirection.Horizontal
-        horizontalAlphaPicker.type = SwiftHUEColorPicker.PickerType.Alpha
     }
     
     // MARK: - SwiftHUEColorPickerDelegate
@@ -48,37 +43,31 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
         case SwiftHUEColorPicker.PickerType.Color:
             horizontalSaturationPicker.currentColor = color
             horizontalBrightnessPicker.currentColor = color
-            horizontalAlphaPicker.currentColor = color
-
-            
             break
+            
         case SwiftHUEColorPicker.PickerType.Saturation:
             horizontalColorPicker.currentColor = color
             horizontalBrightnessPicker.currentColor = color
-            horizontalAlphaPicker.currentColor = color
-
-            
             break
+            
         case SwiftHUEColorPicker.PickerType.Brightness:
             horizontalColorPicker.currentColor = color
             horizontalSaturationPicker.currentColor = color
-            horizontalAlphaPicker.currentColor = color
- 
-            
             break
+            
         case SwiftHUEColorPicker.PickerType.Alpha:
-            horizontalColorPicker.currentColor = color
-            horizontalSaturationPicker.currentColor = color
-            horizontalBrightnessPicker.currentColor = color
             break
 
         }
         
+//        let dim = horizontalBrightnessPicker How to get this value?
         let xyColor = PHUtilities.calculateXY(color, forModel: "LCT007")
+        
+            self.getHSBA(color)
+//            print(color)
         self.getColor(xyColor.x, y: xyColor.y)
+        // TODO: Right now only the color and saturation pickers matter. What about the overall brightness/DIM or "bri" in the docs? I'd like a third slider show this and ditch the alpha and brightness here.
     }
-    
-    // TODO: Capture current color, send to light to test with button action. The color picker is using a UIColor to set background...how to capture and convert to what the HUE is up to....?
     
     func getColor(x: CGFloat, y: CGFloat) {
         for light in Light.shared.cache!.lights!.values {
@@ -90,29 +79,52 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
                 if errors != nil {
                     print(errors)
                 }
-                print(Light.shared.lightState)
+                // handle errors
+            }
+        }
+    }
+    
+    
+    func getHSBA(color:UIColor) {
+        var hue:CGFloat = 0.0
+        var sat:CGFloat = 0.0
+        var bri:CGFloat = 0.0
+        var alpha:CGFloat = 0.0
+        
+        color.getHue(&hue, saturation: &sat, brightness: &bri, alpha: &alpha)
+//        
+//        let hueValue = Int(max(0, min(360, Float(hue * 360))))
+//        let saturationValue = Int(max(0, min(100, Float(sat * 100))))
+        let brightnessValue = Int(max(0, min(100, Int(bri * 100))))
+        
+        for light in Light.shared.cache!.lights!.values {
+//            Light.shared.lightState.hue = hueValue
+//            Light.shared.lightState.saturation = saturationValue
+            Light.shared.lightState.brightness = brightnessValue
+            
+            Light.shared.bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: Light.shared.lightState) { (errors: [AnyObject]!) -> () in
+                if errors != nil {
+                    print(errors)
+                }
+                // handle errors
             }
         }
 
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    func updateColor(hue:CGFloat, saturation:CGFloat, brightness:CGFloat, alpha:CGFloat) {
+        for light in Light.shared.cache!.lights!.values {
+            Light.shared.lightState.hue = hue
+            Light.shared.lightState.saturation = saturation
+            Light.shared.lightState.brightness = brightness
+            
+            Light.shared.bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: Light.shared.lightState) { (errors: [AnyObject]!) -> () in
+                if errors != nil {
+                    print(errors)
+                }
+                // handle errors
+            }
+        }
+    }
     
 }

@@ -45,11 +45,20 @@
                                             <action selector="onButtonSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CpX-FI-sgg"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6w8-oe-RaV">
+                                        <rect key="frame" x="275" y="480" width="51" height="30"/>
+                                        <state key="normal" title="ALARM"/>
+                                        <connections>
+                                            <segue destination="okx-3z-2ct" kind="show" identifier="TimePickerViewController" id="Vq1-Qy-mGz"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="6w8-oe-RaV" firstAttribute="top" secondItem="xtd-Ys-Ogk" secondAttribute="bottom" constant="22" id="2MF-nU-rbp"/>
                                     <constraint firstItem="xtd-Ys-Ogk" firstAttribute="centerX" secondItem="HXv-8n-0VF" secondAttribute="centerX" id="707-6X-tqw"/>
                                     <constraint firstItem="Snq-ID-uSC" firstAttribute="leading" secondItem="4YZ-LI-eAL" secondAttribute="leading" id="8oF-Wh-PGv"/>
+                                    <constraint firstItem="6w8-oe-RaV" firstAttribute="centerX" secondItem="HXv-8n-0VF" secondAttribute="centerX" id="Bfz-Rm-Sm1"/>
                                     <constraint firstItem="Snq-ID-uSC" firstAttribute="centerX" secondItem="HXv-8n-0VF" secondAttribute="centerX" id="DBw-6d-Pmu"/>
                                     <constraint firstItem="xtd-Ys-Ogk" firstAttribute="top" secondItem="4YZ-LI-eAL" secondAttribute="bottom" constant="63" id="WSi-KI-3jx"/>
                                     <constraint firstItem="Snq-ID-uSC" firstAttribute="centerY" secondItem="HXv-8n-0VF" secondAttribute="centerY" id="euX-YG-Fc9"/>
@@ -85,7 +94,21 @@
                     <view key="view" contentMode="scaleToFill" id="Wh2-yd-H8z">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="zUu-Gv-XnE">
+                                <rect key="frame" x="0.0" y="264" width="600" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="489428091.82364202">
+                                    <!--2016-07-05 16:14:51 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="zUu-Gv-XnE" secondAttribute="trailing" id="1Mg-m5-CTo"/>
+                            <constraint firstItem="zUu-Gv-XnE" firstAttribute="leading" secondItem="Wh2-yd-H8z" secondAttribute="leading" id="cmp-NT-vWy"/>
+                            <constraint firstItem="zUu-Gv-XnE" firstAttribute="top" secondItem="qJF-Bl-uMr" secondAttribute="bottom" constant="200" id="oxq-AL-h4g"/>
+                            <constraint firstItem="zUu-Gv-XnE" firstAttribute="centerX" secondItem="Wh2-yd-H8z" secondAttribute="centerX" id="qrG-gL-64E"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sa9-Ci-kUl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -136,14 +159,6 @@
                                     <constraint firstAttribute="width" constant="240" id="omA-Eh-nRK"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L22-W7-oCP" customClass="SwiftHUEColorPicker" customModule="SimoneHue" customModuleProvider="target">
-                                <rect key="frame" x="180" y="506" width="240" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="0kn-Ih-sEA"/>
-                                    <constraint firstAttribute="height" constant="50" id="HPN-Zo-lLM"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chu-Nz-Lea">
                                 <rect key="frame" x="0.0" y="562" width="600" height="30"/>
                                 <state key="normal" title="Play!"/>
@@ -153,7 +168,6 @@
                         <constraints>
                             <constraint firstItem="pW8-rf-lCr" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="2jX-PD-bp0"/>
                             <constraint firstItem="Wm7-Eo-PfM" firstAttribute="top" secondItem="Gcq-6f-Jl7" secondAttribute="bottom" constant="20" id="4YA-Zx-OPb"/>
-                            <constraint firstItem="L22-W7-oCP" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="8QG-zk-Ufj"/>
                             <constraint firstItem="chu-Nz-Lea" firstAttribute="leading" secondItem="deq-t0-APV" secondAttribute="leading" id="L0I-Np-kbN"/>
                             <constraint firstAttribute="trailing" secondItem="chu-Nz-Lea" secondAttribute="trailing" id="S99-n6-TUr"/>
                             <constraint firstItem="pW8-rf-lCr" firstAttribute="top" secondItem="eIW-3t-dhE" secondAttribute="bottom" constant="25" id="Up5-T6-EhP"/>
@@ -163,13 +177,11 @@
                             <constraint firstItem="Wm7-Eo-PfM" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="jaX-Ny-83d"/>
                             <constraint firstItem="Gcq-6f-Jl7" firstAttribute="top" secondItem="pW8-rf-lCr" secondAttribute="bottom" constant="20" id="nu7-FU-vLy"/>
                             <constraint firstItem="Gcq-6f-Jl7" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="o0C-UW-o0U"/>
-                            <constraint firstItem="L22-W7-oCP" firstAttribute="top" secondItem="Wm7-Eo-PfM" secondAttribute="bottom" constant="20" id="ov4-Qt-Imh"/>
                             <constraint firstItem="5ql-3J-kHG" firstAttribute="top" secondItem="chu-Nz-Lea" secondAttribute="bottom" constant="15" id="rHg-lO-BaC"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="colorView" destination="eIW-3t-dhE" id="6eL-wS-R2L"/>
-                        <outlet property="horizontalAlphaPicker" destination="L22-W7-oCP" id="bh7-UD-LEx"/>
                         <outlet property="horizontalBrightnessPicker" destination="Wm7-Eo-PfM" id="B0X-Rr-FB0"/>
                         <outlet property="horizontalColorPicker" destination="pW8-rf-lCr" id="UD7-8d-rYf"/>
                         <outlet property="horizontalSaturationPicker" destination="Gcq-6f-Jl7" id="sfF-5o-emP"/>

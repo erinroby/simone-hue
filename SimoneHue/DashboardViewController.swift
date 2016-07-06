@@ -12,10 +12,13 @@ class DashboardViewController: UIViewController {
     let notificationManager = PHNotificationManager.defaultManager()
     
     @IBOutlet weak var dashboardView: UIView!
+    @IBOutlet weak var lightView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.enableHeartbeat()
+        self.setupAppearance()
     }
     
     override func didReceiveMemoryWarning() {
@@ -32,6 +35,10 @@ class DashboardViewController: UIViewController {
     
     func disableHeartbeat() {
         Light.shared.phHueSdk.disableLocalConnection()
+    }
+    
+    func setupAppearance() {
+        self.lightView.layer.cornerRadius = 75
     }
     
     func searchForBridge() {
@@ -132,37 +139,13 @@ class DashboardViewController: UIViewController {
         })
     }
     
-    // MARK: Light State Methods - TODO: refactor to model.
-    
-    @IBAction func offButtonSelected(sender: UIButton) {
-        
-        for light in Light.shared.cache!.lights!.values {
-            
-            Light.shared.lightState.on = false
-            
-            Light.shared.bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: Light.shared.lightState) { (errors: [AnyObject]!) -> () in
-                if errors != nil {
-                    print(errors)
-                }
-            }
-        }
+    func rgbConvert() {
+        // + (UIColor *)colorFromXY:(CGPoint)xy andBrightness:(float)brightness forModel:(NSString*)model
     }
     
-    @IBAction func onButtonSelected(sender: UIButton) {
-        
-        for light in Light.shared.cache!.lights!.values {
-            
-            Light.shared.lightState.brightness = 100
-            Light.shared.lightState.saturation = 254
-            Light.shared.lightState.on = true
-            
-            Light.shared.bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: Light.shared.lightState) { (errors: [AnyObject]!) -> () in
-                if errors != nil {
-                    print(errors)
-                }
-                print(Light.shared.lightState)
-            }
-        }
+    @IBAction func wakeButtonSelected(sender: UIButton) {
+        Light.shared.setOnState()
+        // update title to WAKE OFF!
     }
     
 }

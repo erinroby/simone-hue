@@ -24,7 +24,6 @@
 		0DD39FEC1D26D4D00012FB8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DD39FEA1D26D4D00012FB8B /* LaunchScreen.storyboard */; };
 		0DD3A01C1D26E3090012FB8B /* HueSDK_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD3A01B1D26E3090012FB8B /* HueSDK_iOS.framework */; };
 		0DFA007D1D282E8300BF4C2F /* PushlinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA007C1D282E8300BF4C2F /* PushlinkViewController.swift */; };
-		0DFA007F1D282EA300BF4C2F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA007E1D282EA300BF4C2F /* LoadingViewController.swift */; };
 		0DFA00811D282EC200BF4C2F /* TimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA00801D282EC200BF4C2F /* TimePickerViewController.swift */; };
 		0DFA00831D282ED300BF4C2F /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA00821D282ED300BF4C2F /* ColorPickerViewController.swift */; };
 		EA9B2EEB494A75AF25784B36 /* Pods_SimoneHue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEB7C36E06460E85BBC03884 /* Pods_SimoneHue.framework */; };
@@ -59,7 +58,6 @@
 		0DD39FED1D26D4D00012FB8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DD3A01B1D26E3090012FB8B /* HueSDK_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HueSDK_iOS.framework; sourceTree = "<group>"; };
 		0DFA007C1D282E8300BF4C2F /* PushlinkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushlinkViewController.swift; sourceTree = "<group>"; };
-		0DFA007E1D282EA300BF4C2F /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		0DFA00801D282EC200BF4C2F /* TimePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerViewController.swift; sourceTree = "<group>"; };
 		0DFA00821D282ED300BF4C2F /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		D9EC6D612D2B3F21D03B6E94 /* Pods-SimoneHue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimoneHue.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimoneHue/Pods-SimoneHue.release.xcconfig"; sourceTree = "<group>"; };
@@ -182,7 +180,6 @@
 			children = (
 				0DD39FE31D26D4D00012FB8B /* DashboardViewController.swift */,
 				0DFA007C1D282E8300BF4C2F /* PushlinkViewController.swift */,
-				0DFA007E1D282EA300BF4C2F /* LoadingViewController.swift */,
 				0DFA00801D282EC200BF4C2F /* TimePickerViewController.swift */,
 				0DFA00821D282ED300BF4C2F /* ColorPickerViewController.swift */,
 			);
@@ -334,7 +331,6 @@
 				0DD39FE41D26D4D00012FB8B /* DashboardViewController.swift in Sources */,
 				0DBB77551D27982E00DFEE13 /* DispatchQueueLogFormatter.m in Sources */,
 				0DC10F9B1D277AC50016A7DC /* DashboardView.swift in Sources */,
-				0DFA007F1D282EA300BF4C2F /* LoadingViewController.swift in Sources */,
 				0DBB774A1D27980E00DFEE13 /* DDAbstractDatabaseLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

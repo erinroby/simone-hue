@@ -16,12 +16,9 @@ protocol PHBridgePushLinkViewControllerDelegate {
 class PushlinkViewController: UIViewController {
     var phHueSdk: PHHueSDK!
     var delegate: PHBridgePushLinkViewControllerDelegate!
-    // outlet to progress bar here. @IBOutlet weak var progressView: UIProgressView
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,16 +37,5 @@ class PushlinkViewController: UIViewController {
     func startPushLinking() {
         Light.shared.phHueSdk.startPushlinkAuthentication()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
 
 }

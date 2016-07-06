@@ -13,11 +13,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var navigationController: UINavigationController?
+    var dashboardController: DashboardViewController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
     {
         navigationController = window!.rootViewController as? UINavigationController
+        // self.navigationController?.navigationBarHidden = true
         return true
     }
+    
 }
 

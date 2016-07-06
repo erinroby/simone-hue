@@ -62,10 +62,20 @@
                                             <segue destination="okx-3z-2ct" kind="show" identifier="TimePickerViewController" id="Vq1-Qy-mGz"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Kk-JG-TBa">
+                                        <rect key="frame" x="225" y="108" width="150" height="150"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="CQq-9G-i4j"/>
+                                            <constraint firstAttribute="width" constant="150" id="hDK-df-L3j"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="0Kk-JG-TBa" firstAttribute="top" secondItem="HXv-8n-0VF" secondAttribute="top" constant="108" id="3Ol-0f-cfC"/>
                                     <constraint firstAttribute="trailing" secondItem="xtd-Ys-Ogk" secondAttribute="trailing" id="5d4-AS-cNs"/>
+                                    <constraint firstItem="0Kk-JG-TBa" firstAttribute="centerX" secondItem="HXv-8n-0VF" secondAttribute="centerX" id="JG4-Xg-6m9"/>
                                     <constraint firstAttribute="bottom" secondItem="Snq-ID-uSC" secondAttribute="bottom" constant="70" id="Nfr-ws-QsQ"/>
                                     <constraint firstItem="6w8-oe-RaV" firstAttribute="top" secondItem="xtd-Ys-Ogk" secondAttribute="bottom" constant="25" id="aWK-EY-Sbb"/>
                                     <constraint firstItem="xtd-Ys-Ogk" firstAttribute="leading" secondItem="HXv-8n-0VF" secondAttribute="leading" id="iqh-Z6-i0j"/>
@@ -87,6 +97,7 @@
                     <navigationItem key="navigationItem" id="o0T-Vg-SaE"/>
                     <connections>
                         <outlet property="dashboardView" destination="8bC-Xf-vdC" id="qpr-eb-LpY"/>
+                        <outlet property="lightView" destination="0Kk-JG-TBa" id="Nmf-t8-zqw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -110,12 +121,19 @@
                                 <date key="date" timeIntervalSinceReferenceDate="489428091.82364202">
                                     <!--2016-07-05 16:14:51 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="alarmTimeChanged:" destination="okx-3z-2ct" eventType="valueChanged" id="iX7-Eq-Dz6"/>
+                                </connections>
                             </datePicker>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="twx-yK-NGh">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="c5Y-ss-Sw9"/>
-                                    <barButtonItem title="SAVE" id="ake-EU-MTu"/>
+                                    <barButtonItem title="SAVE" id="ake-EU-MTu">
+                                        <connections>
+                                            <action selector="saveButtonSelected:" destination="okx-3z-2ct" id="z3p-IU-PoQ"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="zz3-bG-p3t"/>
                                 </items>
                             </toolbar>
@@ -131,6 +149,9 @@
                             <constraint firstItem="X1I-cH-qYS" firstAttribute="top" secondItem="twx-yK-NGh" secondAttribute="bottom" id="qsP-dw-qyf"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="datePicker" destination="zUu-Gv-XnE" id="Kbf-FQ-GJw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sa9-Ci-kUl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -157,55 +178,68 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pW8-rf-lCr" customClass="SwiftHUEColorPicker" customModule="SimoneHue" customModuleProvider="target">
-                                <rect key="frame" x="180" y="283" width="240" height="50"/>
+                                <rect key="frame" x="150" y="318" width="300" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Evb-ik-yHe"/>
-                                    <constraint firstAttribute="width" constant="240" id="ozk-S3-INu"/>
+                                    <constraint firstAttribute="width" constant="300" id="ozk-S3-INu"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gcq-6f-Jl7" customClass="SwiftHUEColorPicker" customModule="SimoneHue" customModuleProvider="target">
-                                <rect key="frame" x="180" y="353" width="240" height="50"/>
+                                <rect key="frame" x="150" y="388" width="300" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="Ibk-cg-IKs"/>
+                                    <constraint firstAttribute="width" constant="300" id="Ibk-cg-IKs"/>
                                     <constraint firstAttribute="height" constant="50" id="zBr-iC-xAJ"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wm7-Eo-PfM" customClass="SwiftHUEColorPicker" customModule="SimoneHue" customModuleProvider="target">
-                                <rect key="frame" x="180" y="423" width="240" height="50"/>
+                                <rect key="frame" x="150" y="458" width="300" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="KDf-l0-9fY"/>
-                                    <constraint firstAttribute="width" constant="240" id="omA-Eh-nRK"/>
+                                    <constraint firstAttribute="width" constant="300" id="omA-Eh-nRK"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chu-Nz-Lea">
-                                <rect key="frame" x="0.0" y="500" width="600" height="30"/>
-                                <state key="normal" title="Play!"/>
-                                <connections>
-                                    <action selector="playButtonPressed:" destination="iqd-zj-UeG" eventType="touchUpInside" id="b01-XO-Vmx"/>
-                                </connections>
-                            </button>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="abp-S4-XRs">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="6iq-38-dae"/>
-                                    <barButtonItem title="SAVE" id="QzF-EF-ftp"/>
+                                    <barButtonItem title="SAVE" id="QzF-EF-ftp">
+                                        <connections>
+                                            <action selector="saveButtonSelected:" destination="iqd-zj-UeG" id="JLg-jI-IhK"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="daZ-AB-9lk"/>
                                 </items>
                             </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chu-Nz-Lea">
+                                <rect key="frame" x="180" y="558" width="240" height="40"/>
+                                <color key="backgroundColor" red="0.97734374999999996" green="0.97734374999999996" blue="0.97734374999999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="gst-1H-JBQ"/>
+                                    <constraint firstAttribute="width" constant="240" id="p3D-a4-WUz"/>
+                                </constraints>
+                                <state key="normal" title="PLAY">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playButtonPressed:" destination="iqd-zj-UeG" eventType="touchUpInside" id="b01-XO-Vmx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="pW8-rf-lCr" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="2jX-PD-bp0"/>
                             <constraint firstItem="Wm7-Eo-PfM" firstAttribute="top" secondItem="Gcq-6f-Jl7" secondAttribute="bottom" constant="20" id="4YA-Zx-OPb"/>
                             <constraint firstAttribute="trailing" secondItem="abp-S4-XRs" secondAttribute="trailing" id="NLC-3X-iUW"/>
-                            <constraint firstItem="pW8-rf-lCr" firstAttribute="top" secondItem="eIW-3t-dhE" secondAttribute="bottom" constant="25" id="Up5-T6-EhP"/>
+                            <constraint firstItem="chu-Nz-Lea" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="TqP-3c-CYl"/>
+                            <constraint firstItem="pW8-rf-lCr" firstAttribute="top" secondItem="eIW-3t-dhE" secondAttribute="bottom" constant="60" id="Up5-T6-EhP"/>
                             <constraint firstItem="eIW-3t-dhE" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="XL8-XX-OSu"/>
                             <constraint firstItem="eIW-3t-dhE" firstAttribute="top" secondItem="LUc-FE-s7b" secondAttribute="bottom" constant="44" id="d0z-VD-kG9"/>
                             <constraint firstItem="5ql-3J-kHG" firstAttribute="top" secondItem="abp-S4-XRs" secondAttribute="bottom" id="dhd-89-EAu"/>
                             <constraint firstItem="Wm7-Eo-PfM" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="jaX-Ny-83d"/>
+                            <constraint firstItem="chu-Nz-Lea" firstAttribute="top" secondItem="Wm7-Eo-PfM" secondAttribute="bottom" constant="50" id="nSK-nI-b0g"/>
                             <constraint firstItem="Gcq-6f-Jl7" firstAttribute="top" secondItem="pW8-rf-lCr" secondAttribute="bottom" constant="20" id="nu7-FU-vLy"/>
                             <constraint firstItem="Gcq-6f-Jl7" firstAttribute="centerX" secondItem="deq-t0-APV" secondAttribute="centerX" id="o0C-UW-o0U"/>
                             <constraint firstItem="abp-S4-XRs" firstAttribute="leading" secondItem="deq-t0-APV" secondAttribute="leading" id="wwq-vV-Gfs"/>
@@ -221,24 +255,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z83-tE-Jyg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1990" y="88"/>
-        </scene>
-        <!--Loading View Controller-->
-        <scene sceneID="ZD5-ck-YoB">
-            <objects>
-                <viewController storyboardIdentifier="LoadingViewController" id="Xet-oq-VjW" customClass="LoadingViewController" customModule="SimoneHue" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="SB3-Hh-aeT"/>
-                        <viewControllerLayoutGuide type="bottom" id="TZx-1q-thI"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="0vD-7l-yLe">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ALN-tt-jY4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1256" y="1196"/>
         </scene>
         <!--Pushlink View Controller-->
         <scene sceneID="z5R-pz-uOy">
@@ -268,7 +284,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qAK-vL-6wW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1256" y="1938"/>
+            <point key="canvasLocation" x="1256" y="1195"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="T9b-ow-WfH">
@@ -289,4 +305,5 @@
             <point key="canvasLocation" x="504" y="441"/>
         </scene>
     </scenes>
+    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
 </document>

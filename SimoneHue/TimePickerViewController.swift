@@ -10,6 +10,10 @@ import UIKit
 
 class TimePickerViewController: UIViewController {
     
+    @IBOutlet weak var datePicker: UIDatePicker!
+    
+    var alarmTime = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,22 +25,17 @@ class TimePickerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-//    func setAlarm() {
-//        for light in Light.shared.cache!.lights!.values {
-//            
-//            let newSchedule = PHSchedule()
-//            print(newSchedule)
-//            newSchedule.name = "test schedule"
-//            newSchedule.localTime = true
-//            
-//            Light.shared.lightState.on = true
-//            
-//            Light.shared.bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: Light.shared.lightState) { (errors: [AnyObject]!) -> () in
-//                if errors != nil {
-//                    print(errors)
-//                }
-//                print(Light.shared.lightState)
-//            }
-//        }
-//    }
+    @IBAction func alarmTimeChanged(sender: UIDatePicker) {
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.dateFormat = "HH:mm"
+        let strTime = timeFormatter.stringFromDate(datePicker.date)
+        alarmTime = strTime
+    }
+    
+    @IBAction func saveButtonSelected(sender: UIBarButtonItem) {
+        // Tell the light to update it's schedule!
+        // Dismiss this view.
+    
+    }
+    
 }

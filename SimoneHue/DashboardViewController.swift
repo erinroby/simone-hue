@@ -12,10 +12,13 @@ class DashboardViewController: UIViewController {
     let notificationManager = PHNotificationManager.defaultManager()
     
     @IBOutlet weak var dashboardView: UIView!
+    @IBOutlet weak var lightView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.enableHeartbeat()
+        self.setupAppearance()
     }
     
     override func didReceiveMemoryWarning() {
@@ -32,6 +35,10 @@ class DashboardViewController: UIViewController {
     
     func disableHeartbeat() {
         Light.shared.phHueSdk.disableLocalConnection()
+    }
+    
+    func setupAppearance() {
+        self.lightView.layer.cornerRadius = 75
     }
     
     func searchForBridge() {
@@ -136,6 +143,7 @@ class DashboardViewController: UIViewController {
     
     @IBAction func wakeButtonSelected(sender: UIButton) {
         Light.shared.setOnState()
+        // update title to WAKE OFF!
     }
     
 }

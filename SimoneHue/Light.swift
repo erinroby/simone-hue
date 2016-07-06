@@ -23,7 +23,7 @@ class Light: NSObject {
     let currentLightState = PHLightState()
     let alarmLightState = PHLightState()
     let testLightState = PHLightState()
-    
+
     let schedule = PHSchedule()
     
     func startUp() {
@@ -55,15 +55,10 @@ class Light: NSObject {
         }
     }
     
+    // refactor into a toggle as in the docs.
     func setOnState() {
         for light in Light.shared.cache!.lights!.values {
-            
-            if self.currentLightState.on != true {
-                self.currentLightState.on = true
-            } else {
-                self.currentLightState.on = false
-            }
-            
+            self.currentLightState.on = true
             self.setLightState(light.identifier, state: currentLightState)
         }
     }
@@ -74,10 +69,9 @@ class Light: NSObject {
                 print(errors)
             }
         }
-        
     }
     
-    // I need this funciton to return a color in the current state so that I can reflect that state in my colorView on the dashboard.
+    // I need this funciton to return a color in the current state so that I can reflect that state as well as the alarm color state in my colorView on the dashboard.
     func readColorState(state: PHLightState) -> UIColor {
         let color = UIColor()
         return color
@@ -85,7 +79,7 @@ class Light: NSObject {
     
     // Assumes one possible recurring alarm:
     
-    func setAlarm(hour: Int, minute: Int, am: Bool) {
+    func setAlarm(hour: Int, minute: Int) {
         let components = NSDateComponents()
         
         components.hour = hour

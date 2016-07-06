@@ -38,6 +38,17 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
     }
     
     private func setupAppearance() {
+//        self.colorView.backgroundColor
+        horizontalColorPicker.cornerRadius = 0
+        horizontalColorPicker.labelBackgroundColor = UIColor.whiteColor()
+        horizontalColorPicker.labelFontColor = UIColor.darkGrayColor()
+        horizontalSaturationPicker.cornerRadius = 0
+        horizontalSaturationPicker.labelBackgroundColor = UIColor.whiteColor()
+        horizontalSaturationPicker.labelFontColor = UIColor.darkGrayColor()
+        horizontalBrightnessPicker.cornerRadius = 0
+        horizontalBrightnessPicker.labelBackgroundColor = UIColor.whiteColor()
+        horizontalBrightnessPicker.labelFontColor = UIColor.darkGrayColor()
+        
         self.colorView.layer.cornerRadius = 75
     }
     
@@ -89,8 +100,11 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
         let lightColor = self.getColorValues(testLightColor)
         Light.shared.testColor(lightColor.x, y: lightColor.y, bri: lightColor.bri)
     }
-  
-    // Now use the save button to update the alarmLightState
+    
+    @IBAction func saveButtonSelected(sender: UIBarButtonItem) {
+        // update our alarm with testColorState.
+        // dismiss this view.
+    }
 
 
 

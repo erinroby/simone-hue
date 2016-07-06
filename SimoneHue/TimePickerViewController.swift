@@ -16,11 +16,21 @@ class TimePickerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationController?.navigationBarHidden = false
+        Light.shared.readAlarm()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func getSchedules() {
+//        print(Light.shared.cache.schedules)
+//   
+//        print(Light.shared.cache.schedules.count) // maybe I could say if the schedules.count > 0 do an update on that identifier...otherwise, make a new alarm
+//        for schedule in Light.shared.cache.schedules {
+//            print(schedule)
+//        }
     }
     
     @IBAction func alarmTimeChanged(sender: UIDatePicker) {
@@ -32,6 +42,7 @@ class TimePickerViewController: UIViewController {
     @IBAction func saveButtonSelected(sender: UIBarButtonItem) {
         var alarmInt = alarmTime.componentsSeparatedByString(":")
         Light.shared.setAlarm(Int(alarmInt[0])!, minute: Int(alarmInt[1])!)
+        navigationController!.popViewControllerAnimated(true)
     }
     
 }

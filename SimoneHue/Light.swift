@@ -20,11 +20,9 @@ class Light: NSObject {
     let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
     let bridgeSendAPI = PHBridgeSendAPI()
     
-    let currentLightState = PHLightState()
+    var currentLightState = PHLightState()
     let alarmLightState = PHLightState()
     let testLightState = PHLightState()
-
-    var schedule = PHSchedule()
     
     func startUp() {
         phHueSdk.enableLogging(true)
@@ -49,7 +47,7 @@ class Light: NSObject {
             testLightState.x = x
             testLightState.y = y
             testLightState.brightness = bri
-            
+            testLightState.on = true
             self.setLightState(light.identifier, state: testLightState)
         }
     }
@@ -70,16 +68,32 @@ class Light: NSObject {
         }
     }
     
-    // I need this funciton to return a color in the current state so that I can reflect that state as well as the alarm color state in my colorView on the dashboard.
-    func readColorState(state: PHLightState) -> UIColor {
-        let color = UIColor()
+    func readColor() -> UIColor {
+        let light = self.cache.lights["1"] as! PHLight
+        let lightState = light.lightState
+        let x = lightState.x as CGFloat
+        let y = lightState.y as CGFloat
+        let xy = CGPointMake(x, y)
+        let color: UIColor = PHUtilities.colorFromXY(xy, forModel: "LCT007")
         return color
     }
     
-    // Assumes one possible recurring alarm:
+    func readAlarm() -> String {
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .NoStyle
+        formatter.timeStyle = .ShortStyle
+        
+        let schedule = self.cache.schedules["7"] as! PHSchedule
+        let time = formatter.stringFromDate(schedule.date)
+        print(schedule.recurringDays)
+        return time
+    }
     
     func setAlarm(hour: Int, minute: Int) {
         let newSchedule = PHSchedule()
+        let status = PHSchedule.setStatusAsEnum(newSchedule)
+        print(status)
+        
         newSchedule.name = "Simone's Alarm"
         newSchedule.localTime = false
         
@@ -93,20 +107,18 @@ class Light: NSObject {
         components.second = 0
 
         newSchedule.date = calendar!.dateFromComponents(components)
+        
         alarmLightState.on = false
         newSchedule.state = alarmLightState
-        newSchedule.groupIdentifier = "0"
         
+        newSchedule.lightIdentifier = "1"
         self.bridgeSendAPI.createSchedule(newSchedule) { (error) in
-            print("in create schedule")
+            // handle errors
         }
     }
     
     func updateAlarm() {
         
     }
-    
-    func readAlarm() {
-        
-    }
+
 }

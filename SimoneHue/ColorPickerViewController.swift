@@ -50,6 +50,7 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
         horizontalBrightnessPicker.labelFontColor = UIColor.darkGrayColor()
         
         self.colorView.layer.cornerRadius = 75
+        navigationController?.navigationBarHidden = false
     }
     
     // MARK: SwiftHUEColorPickerDelegate
@@ -102,9 +103,8 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
     }
     
     @IBAction func saveButtonSelected(sender: UIBarButtonItem) {
-        
         // update our alarm with testColorState.
-        // dismiss this view.
+        navigationController!.popViewControllerAnimated(true)
     }
 
 

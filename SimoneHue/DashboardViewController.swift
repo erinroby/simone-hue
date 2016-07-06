@@ -13,10 +13,10 @@ class DashboardViewController: UIViewController {
     
     @IBOutlet weak var dashboardView: UIView!
     @IBOutlet weak var lightView: UIView!
+    @IBOutlet weak var alarmView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.enableHeartbeat()
         self.setupAppearance()
     }
@@ -39,6 +39,10 @@ class DashboardViewController: UIViewController {
     
     func setupAppearance() {
         self.lightView.layer.cornerRadius = 75
+        self.alarmView.layer.cornerRadius = 20
+        self.lightView.backgroundColor = Light.shared.readColor()
+        navigationController?.navigationBarHidden = true
+
     }
     
     func searchForBridge() {
@@ -82,18 +86,15 @@ class DashboardViewController: UIViewController {
     // MARK: Notification handler methods. if this subclass isn't inheriting from NSObject, I need @objc before each func declaration.
     
     func localConnection() {
-        print("localConnection")
         // TODO: If connection is successful, this method will be called every heartbeat interval.
         // Update UI to show connected state and cached data
     }
     
     func noLocalConnection() {
-        print("noLocalConnection")
         // TODO: Inform the user that there are connectivity issues and to please check network connection.
     }
     
     func notAuthenticated() {
-        print("notAuthenticated")
         // TODO: We are not authenticated so start the authentication/pushlink process.
         let delay = 0.5 * Double(NSEC_PER_SEC)
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
@@ -103,31 +104,26 @@ class DashboardViewController: UIViewController {
     }
     
     func authenticationSuccess() {
-        print("authenticationSuccess")
         Light.shared.phHueSdk.enableLocalConnection()
         // TODO: Dismiss the pushlinkViewController here...cause we're good to go!
         // TODO: enable a heartbeat to connect to this bridge.
     }
     
     func authenticationFailed() {
-        print("authenticationFailed")
         // TODO: Inform the user about this and ask the user to try again.
     }
     
     func noLocalBridge() {
-        print("noLocalBridge")
         // TODO: Coding error. Be sure that code has handled phHueSdk.setBridgeToUseWithIpAddress(macAddress: String) has been called before beginning pushlink process
     }
     
     func buttonNotPressed() {
-        print("buttonNotPressed")
         // TODO: Type of NSNotification. Fetch percentage of time elepsed from notification. Dict: NSDictionary = notification.userInfo
         // progressPercentage: NSNumber = dictionary objectForKey(progressPercentage)
         // Update UI says documentation.
     }
     
     func doAuthentication() {
-        print("doAuthentication")
         self.disableHeartbeat()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let pushlinkViewController = storyboard.instantiateViewControllerWithIdentifier("PushlinkViewController") as! PushlinkViewController
@@ -141,6 +137,10 @@ class DashboardViewController: UIViewController {
     
     func rgbConvert() {
         // + (UIColor *)colorFromXY:(CGPoint)xy andBrightness:(float)brightness forModel:(NSString*)model
+    }
+    
+    func timePickerViewControllerDidFinish() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func wakeButtonSelected(sender: UIButton) {

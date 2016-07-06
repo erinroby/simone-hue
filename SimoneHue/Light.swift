@@ -24,12 +24,11 @@ class Light: NSObject {
     let alarmLightState = PHLightState()
     let testLightState = PHLightState()
 
-    let schedule = PHSchedule()
+    var schedule = PHSchedule()
     
     func startUp() {
         phHueSdk.enableLogging(true)
         phHueSdk.startUpSDK()
-        schedule.localTime = true
     }
     
     private func getColorValues(color: UIColor) -> (x: CGFloat, y: CGFloat, bri: Int) {
@@ -80,22 +79,27 @@ class Light: NSObject {
     // Assumes one possible recurring alarm:
     
     func setAlarm(hour: Int, minute: Int) {
-        let components = NSDateComponents()
+        let newSchedule = PHSchedule()
+        newSchedule.name = "Simone's Alarm"
+        newSchedule.localTime = false
+        
+        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+        
+        let date = NSDate()
+        let components = calendar!.components([.Era, .Year, .Month, .Day], fromDate: date)
         
         components.hour = hour
         components.minute = minute
-        // add days of the week here.
+        components.second = 0
+
+        newSchedule.date = calendar!.dateFromComponents(components)
+        alarmLightState.on = false
+        newSchedule.state = alarmLightState
+        newSchedule.groupIdentifier = "0"
         
-        if let calendar = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierGregorian) {
-            self.schedule.date = calendar.dateFromComponents(components)
+        self.bridgeSendAPI.createSchedule(newSchedule) { (error) in
+            print("in create schedule")
         }
-        
-        self.schedule.state = alarmLightState
-        self.schedule.identifier = "Simone"
-        self.bridgeSendAPI.createSchedule(schedule) { (error) in
-            // handle the errors!
-        }
-        
     }
     
     func updateAlarm() {

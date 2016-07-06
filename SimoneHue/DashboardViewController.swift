@@ -139,7 +139,9 @@ class DashboardViewController: UIViewController {
         })
     }
     
-    // TODO: refactor such that the light model diplays the alarmLightState.
+    func rgbConvert() {
+        // + (UIColor *)colorFromXY:(CGPoint)xy andBrightness:(float)brightness forModel:(NSString*)model
+    }
     
     @IBAction func wakeButtonSelected(sender: UIButton) {
         Light.shared.setOnState()

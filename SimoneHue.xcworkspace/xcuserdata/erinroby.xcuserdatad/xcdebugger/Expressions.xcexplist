@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "Light.setAlarm(Int, minute : Int) -&gt; ():Light.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TimePickerViewController.saveButtonSelected(UIBarButtonItem) -&gt; ():TimePickerViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Light.(setAlarm(Int, minute : Int) -&gt; ()).(closure #1):Light.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "NSDate()">
+            </PersistentString>
+            <PersistentString
+               value = "NSDate.date()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

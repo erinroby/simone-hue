@@ -24,6 +24,8 @@ class Light: NSObject {
     let alarmLightState = PHLightState()
     let testLightState = PHLightState()
     
+    var alarmColor = UIColor.whiteColor()
+    
     func startUp() {
         phHueSdk.enableLogging(true)
         phHueSdk.startUpSDK()
@@ -55,7 +57,7 @@ class Light: NSObject {
     // refactor into a toggle as in the docs.
     func setOnState() {
         for light in Light.shared.cache!.lights!.values {
-            self.currentLightState.on = true
+            self.currentLightState.on = false
             self.setLightState(light.identifier, state: currentLightState)
         }
     }
@@ -68,7 +70,7 @@ class Light: NSObject {
         }
     }
     
-    func readColor() -> UIColor {
+    func readCurrentColorState() -> UIColor {
         let light = self.cache.lights["1"] as! PHLight
         let lightState = light.lightState
         let x = lightState.x as CGFloat
@@ -78,27 +80,44 @@ class Light: NSObject {
         return color
     }
     
-    func readAlarm() -> String {
+//    func readAlarmColorState() -> UIColor {
+//        let schedule = self.cache.schedules["7"] as! PHSchedule
+//        
+//        let x = alarmState.x as CGFloat
+//        let y = alarmState.y as CGFloat
+//        let xy = CGPointMake(x, y)
+//        let color: UIColor = PHUtilities.colorFromXY(xy, forModel: "LCT007")
+//        return color
+//
+//    }
+    
+    func getAlarmTime() -> String {
         let formatter = NSDateFormatter()
         formatter.dateStyle = .NoStyle
         formatter.timeStyle = .ShortStyle
         
         let schedule = self.cache.schedules["7"] as! PHSchedule
         let time = formatter.stringFromDate(schedule.date)
-        print(schedule.recurringDays)
+
         return time
+    }
+    
+    func getNSDate() -> NSDate {
+        let schedule = self.cache.schedules["7"] as! PHSchedule
+        return schedule.date
     }
     
     func setAlarm(hour: Int, minute: Int) {
         let newSchedule = PHSchedule()
-        let status = PHSchedule.setStatusAsEnum(newSchedule)
-        print(status)
         
         newSchedule.name = "Simone's Alarm"
         newSchedule.localTime = false
+        newSchedule.state = alarmLightState
+        newSchedule.lightIdentifier = "1"
+        newSchedule.identifier = "7"
+        newSchedule.recurringDays.rawValue = 127
         
         let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
-        
         let date = NSDate()
         let components = calendar!.components([.Era, .Year, .Month, .Day], fromDate: date)
         
@@ -107,18 +126,22 @@ class Light: NSObject {
         components.second = 0
 
         newSchedule.date = calendar!.dateFromComponents(components)
-        
-        alarmLightState.on = false
-        newSchedule.state = alarmLightState
-        
-        newSchedule.lightIdentifier = "1"
-        self.bridgeSendAPI.createSchedule(newSchedule) { (error) in
-            // handle errors
+
+        self.bridgeSendAPI.updateScheduleWithSchedule(newSchedule) { (error) in
         }
     }
     
-    func updateAlarm() {
-        
+    func saveAlarmState(x: CGFloat, y: CGFloat, bri: Int) {
+        for light in Light.shared.cache!.lights!.values {
+            alarmLightState.x = x
+            alarmLightState.y = y
+            alarmLightState.brightness = bri
+            alarmLightState.on = true
+            self.setLightState(light.identifier, state: alarmLightState)
+            print(self.cache.schedules["7"])
+        }
     }
+    
+    //
 
 }

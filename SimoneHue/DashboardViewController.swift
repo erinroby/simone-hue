@@ -21,6 +21,13 @@ class DashboardViewController: UIViewController {
         self.setupAppearance()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        let lightColor = self.getColorValues(lightView.backgroundColor!)
+        Light.shared.testColor(lightColor.x, y: lightColor.y, bri: lightColor.bri)
+        self.setupAppearance()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -40,7 +47,8 @@ class DashboardViewController: UIViewController {
     func setupAppearance() {
         self.lightView.layer.cornerRadius = 75
         self.alarmView.layer.cornerRadius = 20
-        self.lightView.backgroundColor = Light.shared.readColor()
+        self.lightView.backgroundColor = Light.shared.readCurrentColorState()
+        self.alarmView.backgroundColor = Light.shared.alarmColor
         navigationController?.navigationBarHidden = true
 
     }
@@ -83,19 +91,17 @@ class DashboardViewController: UIViewController {
         notificationManager.registerObject(self, withSelector: #selector(self.notAuthenticated), forNotification: NO_LOCAL_AUTHENTICATION_NOTIFICATION)
     }
     
-    // MARK: Notification handler methods. if this subclass isn't inheriting from NSObject, I need @objc before each func declaration.
+    // MARK: Notification handler methods required by Hue SDK.
     
     func localConnection() {
-        // TODO: If connection is successful, this method will be called every heartbeat interval.
-        // Update UI to show connected state and cached data
+        // If connection is successful, this method will be called every heartbeat interval.
     }
     
     func noLocalConnection() {
-        // TODO: Inform the user that there are connectivity issues and to please check network connection.
+        // Inform the user that there are connectivity issues and to please check network connection.
     }
     
     func notAuthenticated() {
-        // TODO: We are not authenticated so start the authentication/pushlink process.
         let delay = 0.5 * Double(NSEC_PER_SEC)
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(time, dispatch_get_main_queue()) {
@@ -106,19 +112,18 @@ class DashboardViewController: UIViewController {
     func authenticationSuccess() {
         Light.shared.phHueSdk.enableLocalConnection()
         // TODO: Dismiss the pushlinkViewController here...cause we're good to go!
-        // TODO: enable a heartbeat to connect to this bridge.
     }
     
     func authenticationFailed() {
-        // TODO: Inform the user about this and ask the user to try again.
+        // Inform the user about this and ask the user to try again.
     }
     
     func noLocalBridge() {
-        // TODO: Coding error. Be sure that code has handled phHueSdk.setBridgeToUseWithIpAddress(macAddress: String) has been called before beginning pushlink process
+        // Coding error. Be sure that code has handled phHueSdk.setBridgeToUseWithIpAddress(macAddress: String) has been called before beginning pushlink process
     }
     
     func buttonNotPressed() {
-        // TODO: Type of NSNotification. Fetch percentage of time elepsed from notification. Dict: NSDictionary = notification.userInfo
+        // Type of NSNotification. Fetch percentage of time elepsed from notification. Dict: NSDictionary = notification.userInfo
         // progressPercentage: NSNumber = dictionary objectForKey(progressPercentage)
         // Update UI says documentation.
     }
@@ -135,8 +140,17 @@ class DashboardViewController: UIViewController {
         })
     }
     
-    func rgbConvert() {
-        // + (UIColor *)colorFromXY:(CGPoint)xy andBrightness:(float)brightness forModel:(NSString*)model
+    private func getColorValues(color: UIColor) -> (x: CGFloat, y: CGFloat, bri: Int) {
+        let xyColor = PHUtilities.calculateXY(color, forModel: "LCT007")
+        var hue = CGFloat()
+        var sat = CGFloat()
+        var bri = CGFloat()
+        var alpha = CGFloat()
+        
+        color.getHue(&hue, saturation: &sat, brightness: &bri, alpha: &alpha)
+        let brightnessValue = Int(max(0, min(100, Int(bri * 100))))
+        
+        return (xyColor.x, y: xyColor.y, brightnessValue)
     }
     
     func timePickerViewControllerDidFinish() {
@@ -147,6 +161,5 @@ class DashboardViewController: UIViewController {
         Light.shared.setOnState()
         // update title to WAKE OFF!
     }
-    
 }
 

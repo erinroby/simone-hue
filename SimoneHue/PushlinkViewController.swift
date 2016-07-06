@@ -27,11 +27,11 @@ class PushlinkViewController: UIViewController {
     }
     
     func pushLinkSuccess() {
-        // Start here to dismiss the view...
+        navigationController!.popViewControllerAnimated(true)
     }
     
     func pushLinkFailed(error: PHError) {
-        // Start here to handle errors...
+        // Error handler.
     }
     
     func startPushLinking() {

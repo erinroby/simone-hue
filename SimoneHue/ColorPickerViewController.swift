@@ -39,15 +39,16 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
     
     private func setupAppearance() {
 //        self.colorView.backgroundColor
+        let grey = UIColor(red:0.84, green:0.84, blue:0.84, alpha:1.0)
         horizontalColorPicker.cornerRadius = 0
-        horizontalColorPicker.labelBackgroundColor = UIColor.whiteColor()
-        horizontalColorPicker.labelFontColor = UIColor.darkGrayColor()
+        horizontalColorPicker.labelBackgroundColor = grey
+        horizontalColorPicker.labelFontColor = grey
         horizontalSaturationPicker.cornerRadius = 0
-        horizontalSaturationPicker.labelBackgroundColor = UIColor.whiteColor()
-        horizontalSaturationPicker.labelFontColor = UIColor.darkGrayColor()
+        horizontalSaturationPicker.labelBackgroundColor = grey
+        horizontalSaturationPicker.labelFontColor = grey
         horizontalBrightnessPicker.cornerRadius = 0
-        horizontalBrightnessPicker.labelBackgroundColor = UIColor.whiteColor()
-        horizontalBrightnessPicker.labelFontColor = UIColor.darkGrayColor()
+        horizontalBrightnessPicker.labelBackgroundColor = grey
+        horizontalBrightnessPicker.labelFontColor = grey
         
         self.colorView.layer.cornerRadius = 75
         navigationController?.navigationBarHidden = false
@@ -103,7 +104,11 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
     }
     
     @IBAction func saveButtonSelected(sender: UIBarButtonItem) {
-        // update our alarm with testColorState.
+        // pass testLightColor as UIColor to dashboardViewController for the alarmView.backgroundColor
+        Light.shared.alarmColor = testLightColor
+        let newLightColor = self.getColorValues(testLightColor)
+        Light.shared.saveAlarmState(newLightColor.x, y: newLightColor.y, bri: newLightColor.bri)
+        
         navigationController!.popViewControllerAnimated(true)
     }
 

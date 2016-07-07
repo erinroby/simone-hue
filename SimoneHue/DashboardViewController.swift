@@ -14,9 +14,12 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var dashboardView: UIView!
     @IBOutlet weak var lightView: UIView!
     @IBOutlet weak var alarmView: UIView!
+    @IBOutlet weak var wakeButton: UIButton!
+    @IBOutlet weak var alarmTime: UILabel!
     
     let grey = UIColor(red:0.84, green:0.84, blue:0.84, alpha:1.0)
     var currentColor = UIColor()
+    
     var isLightOn = Bool()
     
     override func viewDidLoad() {
@@ -25,6 +28,11 @@ class DashboardViewController: UIViewController {
         self.currentColor = Light.shared.readCurrentColorState()
         self.alarmView.backgroundColor = self.currentColor
         self.isLightOn = Light.shared.isOn()
+        if self.isLightOn {
+            self.wakeButton.setTitle("WAKE OFF", forState: .Normal)
+        } else {
+            self.wakeButton.setTitle("WAKE ON", forState: .Normal)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -73,6 +81,8 @@ class DashboardViewController: UIViewController {
             self.lightView.backgroundColor = grey
         }
         
+        self.alarmTime.text = Light.shared.getAlarmTime()
+        
         navigationController?.navigationBarHidden = true
     }
     
@@ -114,14 +124,12 @@ class DashboardViewController: UIViewController {
         notificationManager.registerObject(self, withSelector: #selector(self.notAuthenticated), forNotification: NO_LOCAL_AUTHENTICATION_NOTIFICATION)
     }
     
-    // MARK: Notification handler methods required by Hue SDK.
+    // MARK: Notification handler methods required by SDK.
     
     func localConnection() {
-        // If connection is successful, this method will be called every heartbeat interval.
     }
     
     func noLocalConnection() {
-        // Inform the user that there are connectivity issues and to please check network connection.
     }
     
     func notAuthenticated() {
@@ -134,21 +142,15 @@ class DashboardViewController: UIViewController {
     
     func authenticationSuccess() {
         Light.shared.phHueSdk.enableLocalConnection()
-        // TODO: Dismiss the pushlinkViewController here...cause we're good to go!
     }
     
     func authenticationFailed() {
-        // Inform the user about this and ask the user to try again.
     }
     
     func noLocalBridge() {
-        // Coding error. Be sure that code has handled phHueSdk.setBridgeToUseWithIpAddress(macAddress: String) has been called before beginning pushlink process
     }
     
     func buttonNotPressed() {
-        // Type of NSNotification. Fetch percentage of time elepsed from notification. Dict: NSDictionary = notification.userInfo
-        // progressPercentage: NSNumber = dictionary objectForKey(progressPercentage)
-        // Update UI says documentation.
     }
     
     func doAuthentication() {
@@ -163,6 +165,10 @@ class DashboardViewController: UIViewController {
         })
     }
     
+    func setLightView() {
+        // if time == alarmTime, change background color?
+    }
+    
     func timePickerViewControllerDidFinish() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -170,7 +176,11 @@ class DashboardViewController: UIViewController {
     @IBAction func wakeButtonSelected(sender: UIButton) {
         self.isLightOn = Light.shared.toggle()
         self.setupAppearance()
-        // update title to WAKE OFF!
+        if self.isLightOn {
+            self.wakeButton.setTitle("WAKE OFF", forState: .Normal)
+        } else {
+            self.wakeButton.setTitle("WAKE ON", forState: .Normal)
+        }
     }
 }
 

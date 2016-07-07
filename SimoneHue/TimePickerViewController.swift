@@ -13,11 +13,16 @@ class TimePickerViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     
     private var alarmTime = String()
+    private var alarmTimeChanged = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setDatePicker()
         navigationController?.navigationBarHidden = false
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.setDatePicker()
     }
     
     override func didReceiveMemoryWarning() {
@@ -33,11 +38,14 @@ class TimePickerViewController: UIViewController {
         let timeFormatter = NSDateFormatter()
         timeFormatter.dateFormat = "HH:mm"
         alarmTime = timeFormatter.stringFromDate(datePicker.date)
+        alarmTimeChanged = true
     }
     
     @IBAction func saveButtonSelected(sender: UIBarButtonItem) {
         var alarmInt = alarmTime.componentsSeparatedByString(":")
-        Light.shared.setAlarm(Int(alarmInt[0])!, minute: Int(alarmInt[1])!)
+        if alarmTimeChanged {
+            Light.shared.setAlarm(Int(alarmInt[0])!, minute: Int(alarmInt[1])!)
+        }
         navigationController!.popViewControllerAnimated(true)
     }
     

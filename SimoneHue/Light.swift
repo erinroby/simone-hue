@@ -25,8 +25,6 @@ class Light: NSObject {
     
     var stateUpdated = false
     
-    var alarmColor = UIColor.whiteColor()
-    
     func startUp() {
         phHueSdk.enableLogging(true)
         phHueSdk.startUpSDK()
@@ -53,6 +51,7 @@ class Light: NSObject {
             self.light.lightState.x = x
             self.light.lightState.y = y
             self.light.lightState.brightness = bri
+            self.light.lightState.on = true
             self.setLightState(light.identifier, state: self.light.lightState)
         }
     }
@@ -76,6 +75,11 @@ class Light: NSObject {
         return self.light.lightState.on == true
     }
     
+    func turnLightOn() {
+        self.light.lightState.on = true
+        self.setLightState(self.light.identifier, state: self.light.lightState)
+    }
+    
     func setLightState(light: String , state: PHLightState) {
         Light.shared.bridgeSendAPI.updateLightStateForId(light, withLightState: state) { (errors: [AnyObject]!) -> () in
             if errors != nil {
@@ -97,7 +101,6 @@ class Light: NSObject {
         let formatter = NSDateFormatter()
         formatter.dateStyle = .NoStyle
         formatter.timeStyle = .ShortStyle
-
         let time = formatter.stringFromDate(schedule.date)
         return time
     }

@@ -27,6 +27,7 @@
                                             <constraint firstAttribute="width" constant="240" id="bwM-rU-YPy"/>
                                             <constraint firstAttribute="height" constant="45" id="ygE-Nt-q3i"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                         <state key="normal" title="WAKE ON">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -133,9 +134,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="o0T-Vg-SaE"/>
                     <connections>
+                        <outlet property="alarmTime" destination="fMd-zg-OfQ" id="9D1-cW-tW0"/>
                         <outlet property="alarmView" destination="1Cd-5a-tJU" id="H21-rY-Stq"/>
                         <outlet property="dashboardView" destination="8bC-Xf-vdC" id="qpr-eb-LpY"/>
                         <outlet property="lightView" destination="0Kk-JG-TBa" id="Nmf-t8-zqw"/>
+                        <outlet property="wakeButton" destination="Snq-ID-uSC" id="TSC-v4-Vgi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -288,6 +291,7 @@
                         <outlet property="horizontalBrightnessPicker" destination="Wm7-Eo-PfM" id="B0X-Rr-FB0"/>
                         <outlet property="horizontalColorPicker" destination="pW8-rf-lCr" id="UD7-8d-rYf"/>
                         <outlet property="horizontalSaturationPicker" destination="Gcq-6f-Jl7" id="sfF-5o-emP"/>
+                        <outlet property="playButton" destination="chu-Nz-Lea" id="vp8-gT-yFG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z83-tE-Jyg" userLabel="First Responder" sceneMemberID="firstResponder"/>

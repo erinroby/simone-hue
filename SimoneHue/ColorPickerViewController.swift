@@ -14,32 +14,40 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
     @IBOutlet weak var horizontalColorPicker: SwiftHUEColorPicker!
     @IBOutlet weak var horizontalSaturationPicker: SwiftHUEColorPicker!
     @IBOutlet weak var horizontalBrightnessPicker: SwiftHUEColorPicker!
+    @IBOutlet weak var playButton: UIButton!
     
     private var testLightColor = UIColor()
+    private var colorChanged = false
+    private var isLightOn = Bool()
+    private var alarmColor = UIColor()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupColorPicker()
         self.setupAppearance()
+        self.setupColorPicker()
     }
     
     private func setupColorPicker() {
         horizontalColorPicker.delegate = self
         horizontalColorPicker.direction = SwiftHUEColorPicker.PickerDirection.Horizontal
-        horizontalSaturationPicker.type = SwiftHUEColorPicker.PickerType.Color
+        horizontalColorPicker.type = SwiftHUEColorPicker.PickerType.Color
+        horizontalColorPicker.currentColor = self.alarmColor
+        
         
         horizontalSaturationPicker.delegate = self
         horizontalSaturationPicker.direction = SwiftHUEColorPicker.PickerDirection.Horizontal
         horizontalSaturationPicker.type = SwiftHUEColorPicker.PickerType.Saturation
+        horizontalSaturationPicker.currentColor = self.alarmColor
         
         horizontalBrightnessPicker.delegate = self
         horizontalBrightnessPicker.direction = SwiftHUEColorPicker.PickerDirection.Horizontal
         horizontalBrightnessPicker.type = SwiftHUEColorPicker.PickerType.Brightness
+        horizontalBrightnessPicker.currentColor = self.alarmColor
     }
     
     private func setupAppearance() {
-//        self.colorView.backgroundColor
         let grey = UIColor(red:0.84, green:0.84, blue:0.84, alpha:1.0)
+        
         horizontalColorPicker.cornerRadius = 0
         horizontalColorPicker.labelBackgroundColor = grey
         horizontalColorPicker.labelFontColor = grey
@@ -51,6 +59,9 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
         horizontalBrightnessPicker.labelFontColor = grey
         
         self.colorView.layer.cornerRadius = 75
+        self.alarmColor = Light.shared.readCurrentColorState()
+        self.colorView.backgroundColor = self.alarmColor
+        
         navigationController?.navigationBarHidden = false
     }
     
@@ -81,6 +92,7 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
         }
         
         self.testLightColor = color
+        self.colorChanged = true
     }
     
     // MARK: Manage Color Space for HUE
@@ -99,15 +111,22 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
     }
     
     @IBAction private func playButtonPressed(sender: UIButton) {
-        let lightColor = self.getColorValues(testLightColor)
-        Light.shared.testColor(lightColor.x, y: lightColor.y, bri: lightColor.bri)
+        if !self.colorChanged && !Light.shared.isOn() {
+            Light.shared.turnLightOn()
+        } else {
+            let lightColor = self.getColorValues(testLightColor)
+            Light.shared.testColor(lightColor.x, y: lightColor.y, bri: lightColor.bri)
+        }
     }
     
     @IBAction func saveButtonSelected(sender: UIBarButtonItem) {
-        // pass testLightColor as UIColor to dashboardViewController for the alarmView.backgroundColor
-        Light.shared.setLightColor(testLightColor)
-        Light.shared.stateUpdated = true
-        navigationController!.popViewControllerAnimated(true)
+        if !self.colorChanged {
+            navigationController!.popViewControllerAnimated(true)
+        } else {
+            Light.shared.setLightColor(testLightColor)
+            Light.shared.stateUpdated = true
+            navigationController!.popViewControllerAnimated(true)
+        }
     }
 
 

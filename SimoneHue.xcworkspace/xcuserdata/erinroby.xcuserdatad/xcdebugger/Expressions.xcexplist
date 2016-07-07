@@ -3,6 +3,26 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "Light.getAlarmColor() -&gt; UIColor:Light.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Light.isOn() -&gt; Bool:Light.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentLightState.on">
+            </PersistentString>
+            <PersistentString
+               value = "self.light.lightState.on == true">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Light.getAlarmColor() -&gt; ():Light.swift">
+      </ContextState>
+      <ContextState
+         contextName = "TimePickerViewController.saveButtonSelected(UIBarButtonItem) -&gt; ():TimePickerViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "Light.setAlarm(Int, minute : Int) -&gt; ():Light.swift">
          <PersistentStrings>
             <PersistentString
@@ -11,7 +31,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "TimePickerViewController.saveButtonSelected(UIBarButtonItem) -&gt; ():TimePickerViewController.swift">
+         contextName = "DashboardViewController.viewWillAppear(Bool) -&gt; ():DashboardViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Light.shared.stateUpdated">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DashboardViewController.setupAppearance() -&gt; ():DashboardViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Light.shared.isOn()">
+            </PersistentString>
+            <PersistentString
+               value = "self.isLightOn">
+            </PersistentString>
+            <PersistentString
+               value = "(Light.shared.cache.lights[&quot;1&quot;] as! PHLight).lightState.on">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "Light.(setAlarm(Int, minute : Int) -&gt; ()).(closure #1):Light.swift">

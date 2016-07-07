@@ -15,19 +15,33 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var lightView: UIView!
     @IBOutlet weak var alarmView: UIView!
     
+    let grey = UIColor(red:0.84, green:0.84, blue:0.84, alpha:1.0)
+    var currentColor = UIColor()
+    var isLightOn = Bool()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.enableHeartbeat()
-        self.setupAppearance()
+        self.currentColor = Light.shared.readCurrentColorState()
+        self.alarmView.backgroundColor = self.currentColor
+        self.isLightOn = Light.shared.isOn()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        let lightColor = self.getColorValues(lightView.backgroundColor!)
-        Light.shared.testColor(lightColor.x, y: lightColor.y, bri: lightColor.bri)
+        if Light.shared.stateUpdated {
+            self.currentColor = Light.shared.readCurrentColorState()
+            self.alarmView.backgroundColor = self.currentColor
+            Light.shared.stateUpdated = false
+        }
         self.setupAppearance()
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(true)
+        
+    }
+        
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -47,10 +61,19 @@ class DashboardViewController: UIViewController {
     func setupAppearance() {
         self.lightView.layer.cornerRadius = 75
         self.alarmView.layer.cornerRadius = 20
-        self.lightView.backgroundColor = Light.shared.readCurrentColorState()
-        self.alarmView.backgroundColor = Light.shared.alarmColor
+        
+        if self.isLightOn != Light.shared.isOn() {
+            Light.shared.toggle()
+        }
+        
+        if self.isLightOn {
+            self.lightView.backgroundColor = self.currentColor
+            Light.shared.setLightColor(self.currentColor)
+        } else {
+            self.lightView.backgroundColor = grey
+        }
+        
         navigationController?.navigationBarHidden = true
-
     }
     
     func searchForBridge() {
@@ -140,25 +163,13 @@ class DashboardViewController: UIViewController {
         })
     }
     
-    private func getColorValues(color: UIColor) -> (x: CGFloat, y: CGFloat, bri: Int) {
-        let xyColor = PHUtilities.calculateXY(color, forModel: "LCT007")
-        var hue = CGFloat()
-        var sat = CGFloat()
-        var bri = CGFloat()
-        var alpha = CGFloat()
-        
-        color.getHue(&hue, saturation: &sat, brightness: &bri, alpha: &alpha)
-        let brightnessValue = Int(max(0, min(100, Int(bri * 100))))
-        
-        return (xyColor.x, y: xyColor.y, brightnessValue)
-    }
-    
     func timePickerViewControllerDidFinish() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func wakeButtonSelected(sender: UIButton) {
-        Light.shared.setOnState()
+        self.isLightOn = Light.shared.toggle()
+        self.setupAppearance()
         // update title to WAKE OFF!
     }
 }

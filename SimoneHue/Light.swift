@@ -20,18 +20,22 @@ class Light: NSObject {
     let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
     let bridgeSendAPI = PHBridgeSendAPI()
     
-    var currentLightState = PHLightState()
-    let alarmLightState = PHLightState()
-    let testLightState = PHLightState()
+    var light = PHLight()
+    var schedule = PHSchedule()
+    
+    var stateUpdated = false
     
     var alarmColor = UIColor.whiteColor()
     
     func startUp() {
         phHueSdk.enableLogging(true)
         phHueSdk.startUpSDK()
+        light = self.cache.lights["1"] as! PHLight
+        schedule = self.cache.schedules["7"] as! PHSchedule
+        phHueSdk.setLocalHeartbeatInterval(0.5, forResourceType: RESOURCES_LIGHTS)
     }
     
-    private func getColorValues(color: UIColor) -> (x: CGFloat, y: CGFloat, bri: Int) {
+    func getColorValues(color: UIColor) -> (x: CGFloat, y: CGFloat, bri: Int) {
         let xyColor = PHUtilities.calculateXY(color, forModel: "LCT007")
         var hue = CGFloat()
         var sat = CGFloat()
@@ -46,20 +50,30 @@ class Light: NSObject {
     
     func testColor(x: CGFloat, y: CGFloat, bri: Int) {
         for light in Light.shared.cache!.lights!.values {
-            testLightState.x = x
-            testLightState.y = y
-            testLightState.brightness = bri
-            testLightState.on = true
-            self.setLightState(light.identifier, state: testLightState)
+            self.light.lightState.x = x
+            self.light.lightState.y = y
+            self.light.lightState.brightness = bri
+            self.setLightState(light.identifier, state: self.light.lightState)
         }
     }
     
-    // refactor into a toggle as in the docs.
-    func setOnState() {
-        for light in Light.shared.cache!.lights!.values {
-            self.currentLightState.on = false
-            self.setLightState(light.identifier, state: currentLightState)
+    func setLightColor(color: UIColor) {
+        let xyColor = getColorValues(color)
+        testColor(xyColor.x, y: xyColor.y, bri: xyColor.bri)
+    }
+    
+    func isOn() -> Bool {
+        return self.light.lightState.on == true
+    }
+    
+    func toggle() -> Bool {
+        if self.light.lightState.on == true {
+            self.light.lightState.on = false
+        } else {
+            self.light.lightState.on = true
         }
+        self.setLightState(self.light.identifier, state: self.light.lightState)
+        return self.light.lightState.on == true
     }
     
     func setLightState(light: String , state: PHLightState) {
@@ -71,8 +85,7 @@ class Light: NSObject {
     }
     
     func readCurrentColorState() -> UIColor {
-        let light = self.cache.lights["1"] as! PHLight
-        let lightState = light.lightState
+        let lightState = self.light.lightState
         let x = lightState.x as CGFloat
         let y = lightState.y as CGFloat
         let xy = CGPointMake(x, y)
@@ -80,42 +93,26 @@ class Light: NSObject {
         return color
     }
     
-//    func readAlarmColorState() -> UIColor {
-//        let schedule = self.cache.schedules["7"] as! PHSchedule
-//        
-//        let x = alarmState.x as CGFloat
-//        let y = alarmState.y as CGFloat
-//        let xy = CGPointMake(x, y)
-//        let color: UIColor = PHUtilities.colorFromXY(xy, forModel: "LCT007")
-//        return color
-//
-//    }
-    
     func getAlarmTime() -> String {
         let formatter = NSDateFormatter()
         formatter.dateStyle = .NoStyle
         formatter.timeStyle = .ShortStyle
-        
-        let schedule = self.cache.schedules["7"] as! PHSchedule
-        let time = formatter.stringFromDate(schedule.date)
 
+        let time = formatter.stringFromDate(schedule.date)
         return time
     }
     
-    func getNSDate() -> NSDate {
-        let schedule = self.cache.schedules["7"] as! PHSchedule
-        return schedule.date
-    }
-    
     func setAlarm(hour: Int, minute: Int) {
-        let newSchedule = PHSchedule()
+        self.schedule.name = "Simone's Alarm"
+        self.schedule.localTime = false
         
-        newSchedule.name = "Simone's Alarm"
-        newSchedule.localTime = false
-        newSchedule.state = alarmLightState
-        newSchedule.lightIdentifier = "1"
-        newSchedule.identifier = "7"
-        newSchedule.recurringDays.rawValue = 127
+        let alarmLightState = PHLightState()
+        alarmLightState.on = true
+        
+        self.schedule.state = alarmLightState
+        self.schedule.lightIdentifier = self.light.identifier
+        self.schedule.identifier = "7"
+        self.schedule.recurringDays.rawValue = 127
         
         let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
         let date = NSDate()
@@ -125,23 +122,9 @@ class Light: NSObject {
         components.minute = minute
         components.second = 0
 
-        newSchedule.date = calendar!.dateFromComponents(components)
+        self.schedule.date = calendar!.dateFromComponents(components)
 
-        self.bridgeSendAPI.updateScheduleWithSchedule(newSchedule) { (error) in
+        self.bridgeSendAPI.updateScheduleWithSchedule(self.schedule) { (error) in
         }
     }
-    
-    func saveAlarmState(x: CGFloat, y: CGFloat, bri: Int) {
-        for light in Light.shared.cache!.lights!.values {
-            alarmLightState.x = x
-            alarmLightState.y = y
-            alarmLightState.brightness = bri
-            alarmLightState.on = true
-            self.setLightState(light.identifier, state: alarmLightState)
-            print(self.cache.schedules["7"])
-        }
-    }
-    
-    //
-
 }

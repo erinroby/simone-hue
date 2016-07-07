@@ -105,42 +105,10 @@ class ColorPickerViewController: UIViewController, SwiftHUEColorPickerDelegate {
     
     @IBAction func saveButtonSelected(sender: UIBarButtonItem) {
         // pass testLightColor as UIColor to dashboardViewController for the alarmView.backgroundColor
-        Light.shared.alarmColor = testLightColor
-        let newLightColor = self.getColorValues(testLightColor)
-        Light.shared.saveAlarmState(newLightColor.x, y: newLightColor.y, bri: newLightColor.bri)
-        
+        Light.shared.setLightColor(testLightColor)
+        Light.shared.stateUpdated = true
         navigationController!.popViewControllerAnimated(true)
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

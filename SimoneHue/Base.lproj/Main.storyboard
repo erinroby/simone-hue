@@ -80,21 +80,20 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMd-zg-OfQ">
-                                        <rect key="frame" x="105" y="387" width="39" height="21"/>
+                                        <rect key="frame" x="100" y="387" width="39" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fbA-aa-rs6">
-                                        <rect key="frame" x="25" y="373" width="50" height="50"/>
-                                        <color key="backgroundColor" red="0.69673477564102559" green="0.69673477564102559" blue="0.69673477564102559" alpha="1" colorSpace="calibratedRGB"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Alarm" translatesAutoresizingMaskIntoConstraints="NO" id="fbA-aa-rs6">
+                                        <rect key="frame" x="30" y="378" width="40" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="e0h-cJ-S1z"/>
-                                            <constraint firstAttribute="height" constant="50" id="x1V-I5-Nqw"/>
+                                            <constraint firstAttribute="width" constant="40" id="e0h-cJ-S1z"/>
+                                            <constraint firstAttribute="height" constant="40" id="x1V-I5-Nqw"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HUE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ka1-xb-oUb">
-                                        <rect key="frame" x="105" y="292" width="35" height="21"/>
+                                        <rect key="frame" x="100" y="292" width="35" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -158,7 +157,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="zUu-Gv-XnE">
-                                <rect key="frame" x="0.0" y="264" width="600" height="216"/>
+                                <rect key="frame" x="0.0" y="408" width="600" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="489428091.82364202">
                                     <!--2016-07-05 16:14:51 +0000-->
                                 </date>
@@ -178,14 +177,36 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="zz3-bG-p3t"/>
                                 </items>
                             </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LargeAlarm" translatesAutoresizingMaskIntoConstraints="NO" id="TYP-Ez-xkE">
+                                <rect key="frame" x="212" y="108" width="175" height="175"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="175" id="AWV-WN-Hda"/>
+                                    <constraint firstAttribute="height" constant="175" id="mId-ol-MAc"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WAKE TIME:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPX-W4-8Yy">
+                                <rect key="frame" x="180" y="333" width="240" height="45"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="dyF-mZ-QjT"/>
+                                    <constraint firstAttribute="height" constant="45" id="qdh-kD-ofl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="TYP-Ez-xkE" firstAttribute="top" secondItem="qJF-Bl-uMr" secondAttribute="bottom" constant="44" id="0Jb-ET-K4L"/>
                             <constraint firstAttribute="trailing" secondItem="zUu-Gv-XnE" secondAttribute="trailing" id="1Mg-m5-CTo"/>
                             <constraint firstAttribute="trailing" secondItem="twx-yK-NGh" secondAttribute="trailing" id="4HA-fb-g8I"/>
+                            <constraint firstItem="zUu-Gv-XnE" firstAttribute="top" secondItem="vPX-W4-8Yy" secondAttribute="bottom" constant="30" id="6ea-fE-TTQ"/>
+                            <constraint firstItem="vPX-W4-8Yy" firstAttribute="centerX" secondItem="Wh2-yd-H8z" secondAttribute="centerX" id="NMX-wd-gVG"/>
+                            <constraint firstItem="TYP-Ez-xkE" firstAttribute="centerX" secondItem="Wh2-yd-H8z" secondAttribute="centerX" id="PGf-ow-bP5"/>
                             <constraint firstItem="zUu-Gv-XnE" firstAttribute="leading" secondItem="Wh2-yd-H8z" secondAttribute="leading" id="cmp-NT-vWy"/>
+                            <constraint firstItem="vPX-W4-8Yy" firstAttribute="top" secondItem="TYP-Ez-xkE" secondAttribute="bottom" constant="50" id="kdl-Gg-HDO"/>
                             <constraint firstItem="twx-yK-NGh" firstAttribute="leading" secondItem="Wh2-yd-H8z" secondAttribute="leading" id="oRk-9G-cZv"/>
-                            <constraint firstItem="zUu-Gv-XnE" firstAttribute="top" secondItem="qJF-Bl-uMr" secondAttribute="bottom" constant="200" id="oxq-AL-h4g"/>
                             <constraint firstItem="zUu-Gv-XnE" firstAttribute="centerX" secondItem="Wh2-yd-H8z" secondAttribute="centerX" id="qrG-gL-64E"/>
                             <constraint firstItem="X1I-cH-qYS" firstAttribute="top" secondItem="twx-yK-NGh" secondAttribute="bottom" id="qsP-dw-qyf"/>
                         </constraints>
@@ -347,5 +368,9 @@
             <point key="canvasLocation" x="504" y="441"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Alarm" width="171" height="154"/>
+        <image name="LargeAlarm" width="171" height="153"/>
+    </resources>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
 </document>

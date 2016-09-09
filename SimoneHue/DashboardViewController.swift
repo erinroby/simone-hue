@@ -165,10 +165,6 @@ class DashboardViewController: UIViewController {
         })
     }
     
-    func setLightView() {
-        // if time == alarmTime, change background color?
-    }
-    
     func timePickerViewControllerDidFinish() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
